@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% if title %}
+
+    <title>IUM - {{title}}</title>
+    {% else %}
+    <title>IUM</title>
+
+    {% endif %} {%load static%} {%load static%}
+    <!--Jquery-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    {% comment %}
+    <script src="{% static 'portal/js/jquery-3.6.0.min.js'%}"></script>
+    {% endcomment %}
+    <!-- plugins:css -->
+
+    {% comment %}
+    <link
+      href="{%static 'portal/vendor/select2/select2.min.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+    {% endcomment %}
+
+    <link
+      rel="stylesheet"
+      href="{%static 'portal/vendors/mdi/css/materialdesignicons.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{%static 'portal/vendors/base/vendor.bundle.base.css'%}"
+    />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link
+      rel="stylesheet"
+      href="{%static 'portal/vendors/datatables.net-bs4/dataTables.bootstrap4.css'%}"
+    />
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{%static 'portal/css/style.css'%}" />
+    <!-- endinject -->
+    <link
+      rel="shortcut icon"
+      href="{%static 'portal/images/ium small logo.jpg'%}"
+    />
+    {% comment %}
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+      rel="stylesheet"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%static 'portal/plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%static 'portal/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%static 'portal/plugins/OwlCarousel2-2.2.1/animate.css'%}"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%static 'portal/styles/main_styles.css'%}"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{%static 'portal/styles/responsive.css'%}"
+    />
+    {% endcomment %}
+
+    <!-- Icons font CSS-->
+    {% comment %}
+    <link
+      href="{%static 'portal/vendor/mdi-font/css/material-design-iconic-font.min.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+    {% endcomment %}
+    <link
+      href="{%static 'portal/vendor/font-awesome-4.7/css/font-awesome.min.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+
+    <!-- Font special for pages-->
+    {% comment %}
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    {% endcomment %}
+
+    <!-- Bootstrap CSS -->
+    {% comment %}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    {% endcomment %} {% comment %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
+    />
+    {% endcomment %}
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS-->
+
+    <link
+      href="{%static 'portal/vendor/datepicker/daterangepicker.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+
+    <!-- Main CSS-->
+
+    <link
+      href="{%static 'portal/css/main.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+    {% comment %}
+    <link
+      href="{%static 'portal/css/form.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+    {% endcomment %}
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+          <div
+            class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100"
+          >
+            <a
+              style="color: maroon"
+              class="navbar-brand brand-logo"
+              href="{%url 'portal-dashboard'%}"
+            >
+              <h2>IUM</h2>
+            </a>
+            <a
+              style="color: maroon"
+              class="navbar-brand brand-logo-mini"
+              href="{%url 'portal-dashboard'%}"
+              ><h4>IUM</h4>
+            </a>
+            <button
+              class="navbar-toggler navbar-toggler align-self-center"
+              type="button"
+              data-toggle="minimize"
+            >
+              <span class="mdi mdi-sort-variant"></span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="navbar-menu-wrapper d-flex align-items-center justify-content-end"
+        >
+          <ul class="navbar-nav mr-lg-4 w-100">
+            <li class="nav-item nav-search d-none d-lg-block w-100">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="search">
+                    <i class="mdi mdi-magnify"></i>
+                  </span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search now"
+                  aria-label="search"
+                  aria-describedby="search"
+                />
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown mr-1">
+              <a
+                class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                id="messageDropdown"
+                href="#"
+                data-toggle="dropdown"
+              >
+                <i class="mdi mdi-message-text mx-0"></i>
+                <span class="count"></span>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                aria-labelledby="messageDropdown"
+              >
+                <p class="mb-0 font-weight-normal float-left dropdown-header">
+                  Messages
+                </p>
+                <a class="dropdown-item">
+                  <div class="item-thumbnail">
+                    <img
+                      src="{{user.profile.profile_picture.url}}"
+                      alt="image"
+                      class="profile-pic"
+                    />
+                  </div>
+
+                  <div class="item-content flex-grow">
+                    <h6 class="ellipsis font-weight-normal">David Grey</h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      The meeting is cancelled
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item">
+                  <div class="item-thumbnail">
+                    <img
+                      src="{{user.profile.profile_picture.url}}"
+                      alt="image"
+                      class="profile-pic"
+                    />
+                  </div>
+                  <div class="item-content flex-grow">
+                    <h6 class="ellipsis font-weight-normal">Tim Cook</h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      New product launch
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item">
+                  <div class="item-thumbnail">
+                    <img
+                      src="{{user.profile.profile_picture.url}}"
+                      alt="image"
+                      class="profile-pic"
+                    />
+                  </div>
+                  <div class="item-content flex-grow">
+                    <h6 class="ellipsis font-weight-normal">Johnson</h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      Upcoming board meeting
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown mr-4">
+              <a
+                class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
+                id="notificationDropdown"
+                href="#"
+                data-toggle="dropdown"
+              >
+                <i class="mdi mdi-bell mx-0"></i>
+                <span class="count"></span>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                aria-labelledby="notificationDropdown"
+              >
+                <p class="mb-0 font-weight-normal float-left dropdown-header">
+                  Notifications
+                </p>
+                <a class="dropdown-item">
+                  <div class="item-thumbnail">
+                    <div class="item-icon bg-success">
+                      <i class="mdi mdi-information mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="item-content">
+                    <h6 class="font-weight-normal">New User Application</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Just now
+                    </p>
+                  </div>
+                </a>
+
+                <a class="dropdown-item">
+                  <div class="item-thumbnail">
+                    <div class="item-icon bg-info">
+                      <i class="mdi mdi-account-box mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="item-content">
+                    <h6 class="font-weight-normal">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      2 days ago
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                data-toggle="dropdown"
+                id="profileDropdown"
+              >
+                <img src="{{user.profile.profile_picture.url}}" alt="profile" />
+                <span class="nav-profile-name"> {{user}} </span>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                aria-labelledby="profileDropdown"
+              >
+                <a class="dropdown-item" href="{% url 'portal-user-profile'%}">
+                  <i class="mdi mdi-account text-primary"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="{% url 'logout'%}">
+                  <i class="mdi mdi-logout text-primary"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button
+            class="navbar-toggler navbar-toggler-right d-lg-none align-self-center"
+            type="button"
+            data-toggle="offcanvas"
+          >
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'portal-dashboard'%}">
+                <i class="mdi mdi-home-outline menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                href="#faculties"
+                aria-expanded="false"
+                aria-controls="faculties"
+              >
+                <i class="mdi mdi mdi-grid-large menu-icon"></i>
+                <span class="menu-title">Univerisity</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="faculties">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'portal-subject'%}"
+                      >Subjects</a
+                    >
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'portal-course'%}"
+                      >Courses</a
+                    >
+                  </li>
+                  {% if user.is_superuser%}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'portal-faculty'%}"
+                      >Faculty</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portal-campus'%}"
+                      >Campus</a
+                    >
+                  </li>
+                  {% endif%}
+                </ul>
+              </div>
+            </li>
+            {% if not user.is_staff or user.is_superuser%}
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'portal-application-home'%}">
+                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                <span class="menu-title">Application Forms</span>
+              </a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'portal-application-forms' %}">
+                <i class="mdi mdi-view-headline menu-icon"></i>
+                <span class="menu-title">Forms</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'portal-unavailable'%}">
+                <i class="mdi mdi-message-outline menu-icon"></i>
+                <span class="menu-title">Messages</span>
+              </a>
+            </li>
+            {% if user.is_staff %} {% if user.is_superuser %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'portal-users'%}">
+                <i class="mdi mdi-account-outline menu-icon"></i>
+                <span class="menu-title">Users</span>
+              </a>
+            </li>
+            {% endif %}
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                href="#reports"
+                aria-expanded="false"
+                aria-controls="reports"
+              >
+                <i class="mdi mdi-chart-bar menu-icon"></i>
+                <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="reports">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/ui-features/buttons.html"
+                      >Tables</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/ui-features/typography.html"
+                      >Charts</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            {% if user.is_superuser %}
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                data-toggle="collapse"
+                href="#auth"
+                aria-expanded="false"
+                aria-controls="auth"
+              >
+                <i class="mdi mdi-settings-outline menu-icon"></i>
+                <span class="menu-title">System</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/samples/login.html">
+                      Login & Registration
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/samples/login-2.html">
+                      Theme
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="pages/samples/register.html">
+                      Forms
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portal-faq-create'%}">
+                      FAQs
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="{% url 'portal-terms-and-conditions-create'%}"
+                    >
+                      Terms & conditions
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            {% endif %} {% endif %} {% comment %}
+            <li class="nav-item">
+              <a class="nav-link" href="documentation/documentation.html">
+                <i class="mdi mdi-settings-outline menu-icon"></i>
+                <span class="menu-title">System</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="documentation/documentation.html">
+                <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                <span class="menu-title">Documentation</span>
+              </a>
+            </li>
+            {% endcomment %}
+          </ul>
+        </nav>
+
+        {% comment %} CONTENT BLOCK {% endcomment %} {% block content%}
+        {%endblock %} {% comment %} CONTENT BLOG END {% endcomment %}
+      </div>
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="{%static 'portal/vendors/base/vendor.bundle.base.js'%}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="{%static 'portal/vendors/chart.js/Chart.min.js'%}"></script>
+    <script src="{%static 'portal/vendors/datatables.net/jquery.dataTables.js'%}"></script>
+    <script src="{%static 'portal/vendors/datatables.net-bs4/dataTables.bootstrap4.js'%}"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="{%static 'portal/js/off-canvas.js'%}"></script>
+    <script src="{%static 'portal/js/hoverable-collapse.js'%}"></script>
+    <script src="{%static 'portal/js/template.js'%}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{%static 'portal/js/dashboard.js'%}"></script>
+    <script src="{%static 'portal/js/data-table.js'%}"></script>
+    <script src="{%static 'portal/js/jquery.dataTables.js'%}"></script>
+    <script src="{%static 'portal/js/dataTables.bootstrap4.js'%}"></script>
+    <!-- End custom js for this page-->
+
+    <!-- Jquery JS-->
+    <script src="{%static 'portal/vendor/jquery/jquery.min.js'%}"></script>
+    <!-- Vendor JS-->
+    <script src="{%static 'portal/vendor/select2/select2.min.js'%}"></script>
+    <script src="{%static 'portal/vendor/datepicker/moment.min.js'%}"></script>
+    <script src="{%static 'portal/vendor/datepicker/daterangepicker.js'%}"></script>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js "
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB "
+      crossorigin="anonymous "
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js "
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13 "
+      crossorigin="anonymous "
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js "></script>
+
+    <!-- Main JS-->
+    <script src="{%static 'portal/js/global.js'%}"></script>
+
+    <!--Jquery-->
+    <script src="{% static 'portal/js/application_form.js'%}"></script>
+  </body>
+</html>

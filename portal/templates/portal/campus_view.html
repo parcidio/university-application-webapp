@@ -1,0 +1,359 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-grid-large text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;University&nbsp;/&nbsp;Campus&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">View Campus</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12 stretch-card">
+              <div class="col-sm-5 col-md-4 col-lg-5">
+                <a
+                  type="button"
+                  class="btn bg-gray btn-icon mr-3 d-md-block"
+                  href="{{request.META.HTTP_REFERER|escape}}"
+                >
+                  <i class="mdi mdi-arrow-left-bold text-muted"></i>
+                </a>
+              </div>
+
+              <div class="col-sm-8 col-md-8 col-lg-8">
+                <p class="card-title">{{campus.name}}</p>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-xl-between">
+              <div
+                class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+              >
+                <i
+                  class="mdi mdi-file-document-box icon-lg mr-3 text-primary"
+                ></i>
+                <div class="d-flex flex-column justify-content-around">
+                  <small class="mb-1 text-muted">Applications</small>
+                  <h5 class="mr-2 mb-0">0</h5>
+                </div>
+              </div>
+              <div
+                class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+              >
+                <i class="mdi mdi-account mr-3 icon-lg text-danger"></i>
+                <div class="d-flex flex-column justify-content-around">
+                  <small class="mb-1 text-muted">Staff</small>
+                  <h5 class="mr-2 mb-0">0</h5>
+                </div>
+              </div>
+              <div
+                class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+              >
+                <i class="mdi mdi-buffer mr-3 icon-lg text-success"></i>
+                <div class="d-flex flex-column justify-content-around">
+                  <small class="mb-1 text-muted">Courses</small>
+                  <h5 class="mr-2 mb-0">0</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body dashboard-tabs p-0">
+            <ul class="nav nav-tabs px-4" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="application-tab"
+                  data-toggle="tab"
+                  href="#application"
+                  role="tab"
+                  aria-controls="application"
+                  aria-selected="true"
+                  >Applications</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="staff-tab"
+                  data-toggle="tab"
+                  href="#staff"
+                  role="tab"
+                  aria-controls="staff"
+                  aria-selected="false"
+                  >Staff</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="course-tab"
+                  data-toggle="tab"
+                  href="#course"
+                  role="tab"
+                  aria-controls="programme"
+                  aria-selected="false"
+                  >Courses</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content py-0 px-0">
+              <div
+                class="tab-pane fade show active"
+                id="application"
+                role="tabpanel"
+                aria-labelledby="application-tab"
+              >
+                <div class="table-responsive pt-3">
+                  <table id="" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th colspan="2">User</th>
+
+                        <th>Account type</th>
+                        <th>Status</th>
+                        <th>Date joint</th>
+                        <th>Last Login</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <ul class="navbar-nav navbar-nav-right">
+                            <li class="nav-item dropdown mr-1">
+                              <a
+                                class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                id="messageDropdown"
+                                href="#"
+                                data-toggle="dropdown"
+                              >
+                                <i class="mdi mx-0"></i>
+                              </a>
+                              <div
+                                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                aria-labelledby="messageDropdown"
+                              >
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-delete text-muted"></i>
+                                  delete</a
+                                >
+                                {%if user.is_active == True%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-down-bold text-muted"
+                                  ></i>
+                                  disable</a
+                                >
+                                {%else%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-up-bold text-muted"
+                                  ></i>
+                                  enable</a
+                                >
+                                {%endif%}
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-eye text-muted"></i>
+                                  edit</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="staff"
+                role="tabpanel"
+                aria-labelledby="staff-tab"
+              >
+                <div class="table-responsive pt-3">
+                  <table id="" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th colspan="2">User</th>
+
+                        <th>Account type</th>
+                        <th>Status</th>
+                        <th>Date joint</th>
+                        <th>Last Login</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <ul class="navbar-nav navbar-nav-right">
+                            <li class="nav-item dropdown mr-1">
+                              <a
+                                class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                id="messageDropdown"
+                                href="#"
+                                data-toggle="dropdown"
+                              >
+                                <i class="mdi mx-0"></i>
+                              </a>
+                              <div
+                                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                aria-labelledby="messageDropdown"
+                              >
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-delete text-muted"></i>
+                                  delete</a
+                                >
+                                {%if user.is_active == True%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-down-bold text-muted"
+                                  ></i>
+                                  disable</a
+                                >
+                                {%else%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-up-bold text-muted"
+                                  ></i>
+                                  enable</a
+                                >
+                                {%endif%}
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-eye text-muted"></i>
+                                  edit</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div
+                class="tab-pane fade"
+                id="course"
+                role="tabpanel"
+                aria-labelledby="application_status-tab"
+              >
+                <div class="table-responsive pt-3">
+                  <table id="" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th colspan="2">User</th>
+
+                        <th>Account type</th>
+                        <th>Status</th>
+                        <th>Date joint</th>
+                        <th>Last Login</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                          <ul class="navbar-nav navbar-nav-right">
+                            <li class="nav-item dropdown mr-1">
+                              <a
+                                class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                id="messageDropdown"
+                                href="#"
+                                data-toggle="dropdown"
+                              >
+                                <i class="mdi mx-0"></i>
+                              </a>
+                              <div
+                                class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                aria-labelledby="messageDropdown"
+                              >
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-delete text-muted"></i>
+                                  delete</a
+                                >
+                                {%if user.is_active == True%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-down-bold text-muted"
+                                  ></i>
+                                  disable</a
+                                >
+                                {%else%}
+                                <a class="dropdown-item" href="">
+                                  <i
+                                    class="mdi mdi-arrow-up-bold text-muted"
+                                  ></i>
+                                  enable</a
+                                >
+                                {%endif%}
+                                <a class="dropdown-item" href="">
+                                  <i class="mdi mdi-eye text-muted"></i>
+                                  edit</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+
+  <!-- main-panel ends -->
+
+  {%endblock content%}
+</div>

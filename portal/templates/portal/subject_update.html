@@ -1,0 +1,121 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;University&nbsp;/&nbsp;Subject&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Update</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <div id="add_section" class="row">
+      <div class="col-md-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12 stretch-card">
+              <div class="col-sm-5 col-md-4 col-lg-5">
+                <a
+                  type="button"
+                  class="btn bg-gray btn-icon mr-3 d-md-block"
+                  href="{{request.META.HTTP_REFERER|escape}}"
+                >
+                  <i class="mdi mdi-arrow-left-bold text-muted"></i>
+                </a>
+              </div>
+
+              <div class="col-sm-8 col-md-8 col-lg-8">
+                <p class="card-title">Update Subject - {{subject.name}} : {{subject.subject_code}}</p>
+              </div>
+            </div>
+            
+            <form class="forms-sample" action="" method="POST">
+                
+            {% csrf_token %}
+                 
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">
+                      Subject Name
+                    </label>
+                    {{form.name}}
+                  </div>
+                </div>                
+              </div> 
+              <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">
+                      Faculty
+                    </label>                                 
+                    {{form.faculty}}
+                  </div>
+                </div>  
+              </div>              
+               
+             <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender"
+                      >Subject Code
+                    </label>
+                    {{form.subject_code}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Lecturer</label>
+                    {{form.lecturer}}
+
+                  </div>
+                </div>
+                
+              </div>  
+              
+               <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender"
+                      >Subject Credits
+                    </label>
+                    {{form.credits}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Subject Level</label>
+                    {{form.level}}
+                  </div>
+                </div>
+              </div> 
+              {% comment %} <div class="row">
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Subject Outline</label>
+                    {{form.subject_outline}}
+                  </div>
+                </div>  
+              </div> {% endcomment %}
+              <button type="submit" class="btn btn-primary mr-2" id="submitBtn">Update</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+</div>
+<!-- main-panel ends -->
+{%endblock content%}

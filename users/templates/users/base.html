@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% if title %}
+
+    <title>IUM - {{title}}</title>
+    {% else %}
+    <title>IUM</title>
+
+    {% endif %} {%load static%}
+    <!-- plugins:css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'users/vendors/mdi/css/materialdesignicons.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'users/vendors/base/vendor.bundle.base.css'%}"
+    />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'users/css/style.css'%}" />
+    <!-- endinject -->
+    <link
+      rel="shortcut icon"
+      href="{% static 'users/images/ium small logo.jpg'%}"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'users/vendor/datepicker/daterangepicker.css'%}"
+      rel="stylesheet"
+      media="all"
+    />
+  </head>
+  <body>
+    {% block content%} {% endblock %}
+    <!-- plugins:js -->
+    <script src="{% static 'users/vendors/base/vendor.bundle.base.js'%}"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="{% static 'users/js/off-canvas.js'%}"></script>
+    <script src="{% static 'users/js/hoverable-collapse.js'%}"></script>
+    <script src="{% static 'users/js/template.js'%}"></script>
+    <!-- endinject -->
+
+    <script src="{% static 'users/vendor/datepicker/moment.min.js '%}"></script>
+    <script src="{% static 'users/vendor/datepicker/daterangepicker.js '%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js "></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'users/js/global.js '%}"></script>
+  </body>
+</html>

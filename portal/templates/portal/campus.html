@@ -1,0 +1,207 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-grid-large text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;University&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Campus</p>
+            </div>
+          </div>
+          <div  class="d-flex justify-content-between align-items-end flex-wrap">
+              
+            <div id="add_faculty_button_open">
+                <button
+            
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+              onclick="toggle_faculty_section(1)"
+            >
+              <i class="mdi mdi-plus text-muted"></i>
+
+            </button>
+            </div>
+            <div id="add_faculty_button_close">
+                <button
+            
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+              onclick="toggle_faculty_section(0)"
+            >
+              <i class="mdi mdi-minus text-muted"></i>
+
+            </button>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <div id="add_section" class="row"  style="display:none">
+      <div class="col-md-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title">Add a new course</p>
+            <form class="forms-sample" action="" method="POST">
+                
+            {% csrf_token %}
+                 
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">
+                      Campus Name
+                    </label>
+                    
+                    
+                    {{form.name}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Campus code</label>
+                    {{form.campus_code}}
+
+                  </div>
+                </div>
+                
+              </div> 
+               <div class="row">
+                <div class="col-md-6">
+                 
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Country</label>
+                    {{form.country}}
+
+                  </div>
+               
+                  <div class="form-group">
+                    <label for="exampleSelectGender"
+                      >Town
+                    </label>
+                    {{form.town}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Address</label>
+                    {{form.address}}
+
+
+                  </div>
+                </div>
+              </div> 
+             <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender"
+                      >Telephone
+                    </label>
+                    {{form.contact}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Email</label>
+                    {{form.email}}
+
+
+                  </div>
+                </div>
+              </div>                 
+               
+              <button type="submit" class="btn btn-primary mr-2" id="submitBtn">Add</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            
+            <p class="card-title">Existing Campuses</p>
+            {% for campus in campus_list%}
+
+           
+          <div class="card mb-3">
+  <h5 class="card-header card-title">{{campus.name}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Inforamtion</h5>
+    <ul class="ml-5">
+                <li>Campus code: <span class="text-uppercase">{{campus.campus_code}}</span></li>
+                <li>Country: {{campus.country.name}}</li>
+                <li>Town: {{campus.town}}</li>
+                <li>Address: {{campus.address}}</li>
+
+                <li>Telephone: {{campus.contact}}</li>
+                <li>Email: {{campus.email}}</li>
+                <li>Created on: {{campus.creation_date}}</li>
+                <li>Updated on: {{campus.updation_date}}</li>
+              </ul>
+              
+                            
+              <a type="button" class="btn bg-white btn-secondary mr-3 mt-3" style="padding:5" href="{% url 'portal-campus-view' campus.id%}">
+                  <span class="text-muted">View</span> 
+              </a> 
+              <a
+                  type="button"
+                  class="btn bg-white btn-primary mr-3 mt-3"
+                  style="padding: 5"
+                  href="{% url 'portal-campus-update' campus.id%}"
+                >
+                  <span class="text-muted">update</span>
+                </a>
+              <button type="button" class="btn bg-white btn-danger mr-3 mt-3" style="padding:5" href="{% url 'portal-campus-delete' campus.id %}" class="confirm-delete" title="Delete" data-toggle="modal" data-target=".deleteConfirmationModal{{campus.id}}" id="deleteButton{{campus.id}}">
+                <span class="text-muted">delete</span> 
+              </button>
+              {% include 'portal/partial/campus_delete_modal.html' %}
+
+              </div>
+            </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  {% include 'portal/partial/footer.html' %}
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+<script>
+    let add_section = document.getElementById("add_section");
+    let add_faculty_button_open = document.getElementById("add_faculty_button_open");
+    let add_faculty_button_close = document.getElementById("add_faculty_button_close");
+    add_section.style.display = "none";
+    add_faculty_button_close.style.display = "none";
+
+
+    function toggle_faculty_section(x){
+        if(x==1){
+    add_section.style.display = "block";
+    add_faculty_button_close.style.display = "block";
+    add_faculty_button_open.style.display = "none";
+
+        }else{
+    add_section.style.display = "none";
+    add_faculty_button_close.style.display = "none";
+    add_faculty_button_open.style.display = "block";
+
+
+        }
+    }
+
+</script>
+{%endblock content%}

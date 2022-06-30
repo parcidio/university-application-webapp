@@ -1,0 +1,105 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Forms&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Application</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+            >
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="row">
+            <div class="col-md-12 stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Recent Purchases</p>
+                  <div class="table-responsive pt-3">
+                    <table id="" class="table">
+                      <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Programme</th>
+                            <th>Course</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for application in applications %}
+                       {% if application.owner == user or user.is_staff %}
+                        <tr>
+                            <td>{{application.owner.first_name}}<span class="ml-1"></span
+                              >{{application.owner.last_name}}</td>
+                            {% if application.status == "Cancelled" %}
+                            <td><span class="badge badge-warning">{{application.status}}</span></td>
+                            {% elif application.status == "Pending" %}
+                            <td><span class="badge badge-primary">{{application.status}}</span></td>
+                            {% elif application.status == "Rejected" %}
+                            <td><span class="badge badge-danger">{{application.status}}</span></td>
+                            {% elif application.status == "Approved" %}
+                            <td><span class="badge badge-success">{{application.status}}</span></td>
+                            {% else %}
+                             <td><span class="badge badge-secondary">{{application.status}}</span></td>
+                            {% endif %}
+
+
+
+                            <td>{{application.category}}</td>
+                            <td>{{application.course_first_choice}}</td>
+                            <td>{{application.creation_date}}</td>
+                            <td>
+                               <ul class="navbar-nav navbar-nav-right">
+                                 
+                                    <a
+                                      class="count-indicator d-flex justify-content-center align-items-center"
+                                   
+                                      href="{% url 'portal-application-form-view' application.id%}"
+                                 
+                                    >
+                                      <i class="mdi mdi-eye hover-cursor"></i>
+
+                                    </a>
+                                    
+                                  </li>
+                                </ul>
+                              </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+   
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+  {% include 'portal/partial/footer.html' %}
+  <!-- partial -->
+  </div>
+  
+  <!-- main-panel ends -->
+  {%endblock content%}
+</div>

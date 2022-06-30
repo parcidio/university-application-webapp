@@ -1,0 +1,116 @@
+					System input: second meeting about the system
+
+
+author: Parcidio Andre
+Date: 27/04/2022
+next meeting: 09/05/2022
+
+---------------------------------
+
+The date of birth should be at least 10 years behind today.
+At registering, the user should confirm the email before logging in.
+The option of auto-populating the subjects at the schooling with the grade 12 exam ID.
+	in case the ID provided is not valid, the user should be provided with the option 
+	of uploading the certificate, which will be scanned by the system and read into the text (use plugins)
+The courses to be selected should be based on the campus and program (level)
+courses should have subjects too
+Encrypt the database
+the final step (confirmation) in the form should have the terms and conditions in that same section as scrollable
+
+---------------------------------
+
+author: Maria Murangi
+Date: 27/04/2022
+next meeting: 09/05/2022
+
+create table  session connected to the database already 
+so that whe
+primary key should be  connected unique id
+under forms
+- you should see the courses
+-mode of study
+
+sign up
+
+not safe
+should make sure the email are
+when you sign in  the user should be able to view
+available course and campuses where offered
+
+facaulties are not necessary for now
+
+
+if you signin as an admin
+you can allocate the dean later , but the dean should be allocated to their facaulties
+
+when deleting users you should  provide a deletion confirmation
+
+{DONE} create course, codes as primary code, name ,levels , fees, uniqid, total credits, total credits(when creating modules) 
+
+
+{DONE}  campus have unique codes, primary key should be incremental, address, town, country,
+
+{DONE} mode of study should be added to the each courses
+add, update, {DONE} delete confirmation
+
+
+forms
+when you chose the prefered campus 
+should only give the courses offered in that campus
+
+
+
+make an automatic saving or button for saving and updating
+previous and next button for the sessions
+saving functionality
+
+get codes from the ministry  for each subject and verify the minimum requirement
+
+ if you are from ium you dont need to provide all the
+if you are an ium
+yes no
+enter student number and verify the qualification and attachment button
+
+
+if you didnt do engling attach  what you did  and choose if you want to apply for short course of english
+
+
+ a reached text botton for the terms and conditions 
+
+reports(tables and charts)
+every user should choose what you want to use
+business interlgence
+
+technical part
+how many users
+
+--------------------------------------
+atlease 10 behind
+ register
+the email should be confirmed
+login
+------------------------------------
+school livinf detail
+ we get the codes  from the ministry
+option to upload
+text reader
+picture reader
+(abbi) for readers
+
+faculty
+
+date create name of facaulty, unique id for the faculty
+dean of facaulty
+department should be attached to the faculty
+should be able to add delete edit
+
+every table should have its unique Id
+all the database informations should be encripted so that only the superuser
+09 May
+
+
+
+
+
+
+

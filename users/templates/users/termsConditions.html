@@ -1,0 +1,37 @@
+{% extends "users/base.html" %} {% block content %} {%load static %}
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+
+                            <div class="brand-logo text-center" style="background-color: maroon;">
+                                <img src="{%static 'users/images/IUM logo.png'%}" alt="logo">
+                            </div>
+                            <h4>Terms and Conditions</h4>
+                            <h6 class="font-weight-light">Please read the terms and condition below before signing up:</h6>
+                            <div class="pt-3">
+                                <p>
+                                    I agree that
+                                    <ul>
+                                        <li>email will be sent to me occasionally</li>
+                                        <li>the information I provided is correct to the best of my knowledge</li>
+                                        <li>I am responsable for whatever actions performed on the sytem with my account</li>
+                                    </ul>
+                                </p>
+                                <div class="text-center mt-4 font-weight-light">
+                                    <a href="{%url 'register'%}" class="text-primary">Go back</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+   
+{%endblock content%}

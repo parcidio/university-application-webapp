@@ -1,0 +1,1755 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+
+<!-- partial -->
+
+
+
+
+{% comment %}
+<link href="{%static 'portal/css/form.css'%}" rel="stylesheet" media="all" /> {% endcomment %}
+<!--End of partials-->
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Undergraduate Registration Form</h1>
+                         
+                        <form id="section1Form" class="forms-sample" enctype="multipart/form-data" data-course-url="{% url 'ajax_load_courses'%}">
+                            {%csrf_token%}
+                            {% include 'portal/partial/grade_12_qualification_test_modal.html'%}
+                            <!-- Circles which indicates the steps of the form: -->
+                            <div style="text-align:center;margin-top:40px;">
+                                <span class="step" onclick="switchSection">1</span>
+                                <span class="step" onclick="switchSection">2</span>
+                                <span class="step" onclick="switchSection">3</span>
+                                <span class="step" onclick="switchSection">4</span>
+                                <span class="step" onclick="switchSection">5</span>
+                                <span class="step" onclick="switchSection">6</span>
+                                <span class="step" onclick="switchSection">7</span>
+                                <span class="step" onclick="switchSection">8</span>
+                                <span class="step" onclick="switchSection">9</span>
+                                <span class="step" onclick="switchSection">10</span>
+                                <span class="step" onclick="switchSection">11</span>
+                                <span class="step" onclick="switchSection">final</span>
+
+                                
+                            </div>
+                            {{applicationForm.current_step}}
+                            <section id="academic-section" class="tab">
+                                <div class="form-group">
+                                    <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                                      <span>
+                                        SECTION 1 : ADEMIC DETAILS
+                                      </span>
+                                         <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                                          >                                               
+                                            <i                             
+                                            id="savedform"
+                                            class="mdi mdi-timelapse mr-0"                                                          
+                                            ></i> 
+                                            auto-save                  
+                                          </div>
+                                    </h5>
+                                    <div class="form-group">
+                                      <label for="exampleSelectGender">Prefered Programme
+                                      </label>                                     
+                                        {{applicationForm.programme}}                                    
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleSelectGender">Course First Choice</label>
+                                      {{applicationForm.course_first_choice}}
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleSelectGender">Prefered Campus</label>
+                                      {{applicationForm.prefered_campus}}
+                                    
+                                   
+
+                                     <label for="exampleSelectGender">What is your application to the University based on? (Applicants applying with non-IUM academic qualification or foreign
+                                      Qualifications should provide NQA evaluation letters. Syllabus for non-IUM qualifications should also be attached at the check list section).
+                                      </label>
+                                      {{applicationForm.based_on_level}}
+                                    
+                                </div>
+                                <div class="form-group" id="based-on-other-section">
+                                    <label for="exampleInputName1"><code>Specify the qualification and Level</code></label>
+                                      {{applicationForm.other_level}}                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Prefered Period</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                {% for period in applicationForm.prefered_period %}                                                
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                         {{period}}
+                                                        </label>
+                                                    </div>
+                                                </div>                                               
+                                                {% endfor %}                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                                         
+                            <section id="personal-section" class="tab">                                
+                                <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                                  <span>
+                                    SECTION 2 : PERSONAL DETAILS
+                                  </span>
+                                  <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                                  >                                               
+                                    <i                             
+                                    id="savedform"
+                                    class="mdi mdi-timelapse mr-0"                                                          
+                                    ></i> 
+                                    auto-save                  
+                                  </div>
+                                </h5>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Title</label> {{profileForm.title}}                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Gender</label>
+                                                {{profileForm.gender}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Full names </label>
+                                                {{profileForm.full_name}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Surname </label>
+                                                {{profileForm.surname}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Date of Birth </label>
+                                                {{profileForm.date_of_birth}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Marital Status</label>
+                                                {{profileForm.marital_status}}                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleSelectGender">Nationality</label>
+                                   {{profileForm.nationality}}
+                                </div>
+                                <div id="namibianIdSection">
+                                <div class="form-group" id="namibianID">
+                                    <label for="exampleInputName1">ID Number</label>
+                                    {{profileForm.id_number}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleSelectGender">Choose the region of origin (Namibian nationala only)</label>
+                                     {{profileForm.namibian_region}}
+                                </div>
+                              </div>
+                                <div class="nationalitySection">
+
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong><i class="bi bi-info-circle"></i></strong> If not a Namibian Citizen please provide the following details
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Passport Number</label>
+                                                {{profileForm.passport_number}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Expiry Date</label> {{profileForm.passport_expiry_date}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Permit Number</label> {{profileForm.permit_number}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Type of permit</label> {{profileForm.permit_type}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputName1">Permit Expiry Date</label> {{profileForm.permit_expiry_date}}
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputName1">Do You Have A Impairment, Disability Or Chronic Illness We Shoul Know
+                                    About?</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row" id="id_has_medical_condition">
+                                                {% for answer in profileForm.has_medical_condition %}
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                        {{answer}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group medical_information">
+                                    <label for="exampleInputName1">Based On Your Medical Condition, Do You Have Any Special Needs?</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                {% for answer in profileForm.has_medical_needs %}
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                        {{answer}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group medical_information">
+                                    <label>Based On Your Medical Condition, Do You Have Any Special Needs?</label>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Description</label> {{profileForm.medical_condition_description}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Supportive Documents</label>
+                                                <div class="input-group">
+                                                    <div class="file-drop-area">
+                                                        {% if existingDocument.medical_documents == ''%}
+                                                        <span class="choose-file-button" style="width: 25em">Choose files</span>
+                                                        {% else %}
+                                                        <span class="choose-file-button" style="width: 25em">{{existingDocument.medical_documents}}</span>
+                                                        {%endif%}
+                                                        {{document_form.medical_documents}}
+                                                        {% comment %} <input class="file-input" type="file" multiple /> {% endcomment %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+              
+                        
+              </section>
+              
+              <section id="contact-section" class="tab">
+
+                                <h5 class="card-description" style="border-bottom: solid 2px; border-color: grey">
+                                    SECTION 3 : CONTACT DETAILS
+                                </h5>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Namibian Postal Address</label> {{contactForm.namibia_postal_address}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Namibian Residentail Address (while studying)</label> {{contactForm.namibia_residential_address}}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group nationalitySection" >
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Postal Address From The Country Of Origin (Foreign
+                                                     student)</label> {{contactForm.origin_postal_address}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Residential Address From The Country Of Origin (Foreign
+                                                    student)</label> {{contactForm.origin_residential_address}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Cellphone</label> {{contactForm.cellphone_number_1}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Cellphone 2</label> {{contactForm.cellphone_number_2}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Tel. No.: Worrk</label> {{contactForm.telephone}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Email</label> {{contactForm.email}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                              <section id="kin-section" class="tab">
+
+                                <h5 class="card-description" style="border-bottom: solid 2px; border-color: grey">
+                                    SECTION 4 : NEXT OF KIN DETAILS
+                                </h5>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong><i class="bi bi-info-circle"></i></strong> Fill in the details of the person (PARENTS/GUARDIAN/SPOUSE/OTHERS) to be contacted in case of emergency
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">What Is Your Relationship To The Person?</label> {{kinForm.relationship_type}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleSelectGender">Title</label> {{kinForm.kin_title}}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Full names </label> {{kinForm.first_name}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Surname </label> {{kinForm.last_name}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">ID Number / Passport</label> {{kinForm.kin_id_number}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Cellphone</label> {{kinForm.kin_cellphone_number}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Postal Address</label> {{kinForm.kin_postal_address}}
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Residentail Address</label> {{kinForm.kin_residential_address}}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Telephone Number (Next of kin/Guardian)</label> {{kinForm.kin_telephone}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Occupations</label> {{kinForm.kin_occupation}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Tel. No.: Worrk</label> {{kinForm.Work_telephone}}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Email</label> {{kinForm.kin_email}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </section>
+
+               <section id="employer-section"class="tab">
+                
+                   <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                    <span>
+                      SECTION 5 : EMPLOYMENT PARTICULARS (up to past 5 years if available)
+                    </span>
+                      <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                        >                                               
+                          <i                             
+                          id="savedform"
+                          class="mdi mdi-timelapse mr-0"                                                          
+                          ></i> 
+                          auto-save                  
+                      </div>
+                  </h5>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong><i class="bi bi-info-circle"></i></strong> If entering via Mature Entry, please ensure that this is completed and attach employer’s letter (s) to confirm details on the checklist section
+                                    </div>
+                  <div id="employement-matureEntry-section">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Name Of Employer</label>
+                            {{employerForm.employer_name}}                           
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                          <label for="exampleInputName1">Your Occupation
+                          </label>
+                           {{employerForm.occupation}}                           
+
+                           
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Employer's Telephone</label>
+                           {{employerForm.employer_telephone}}     
+                           
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                          <label for="exampleInputName1">Employer's Email
+                          </label>
+                           {{employerForm.employer_email}} 
+                           
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Start Date</label>
+                         {{employerForm.start_date}}                             
+                           
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                           <label for="exampleInputName1">End Date</label>
+                            {{employerForm.end_date}} 
+                       
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="form-group">
+                    <label for="exampleSelectGender">Description of Main Duties Performed</label>
+                      {{employerForm.duties}} 
+                    
+                </div>
+              </div>
+              </section>
+              <section id="school-section" class="tab">
+                
+                  
+                  <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                    <span>
+                       SECTION 6 : SCHOOL LEAVING PARTICULARS
+                    </span>
+                      <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                        >                                               
+                          <i                             
+                          id="savedform"
+                          class="mdi mdi-timelapse mr-0"                                                          
+                          ></i> 
+                          auto-save                  
+                      </div>
+                  </h5>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Name Of The Last School Attended Or Current School</label>
+                            {{School_leavingForm.school_name}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Highest Grade Passed</label>
+                            {{School_leavingForm.highest_grade}}
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Year Of Exam</label>
+                          {{School_leavingForm.exam_year}}
+
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="exampleInputName1">Examination Authority</label>
+                           {{School_leavingForm.exam_authority}}
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>
+                            #
+                          </th>
+                          <th>
+                            Subject (Best 5 subjects, including English and faculty
+                            compulsory subjects where applicable)
+                          </th>
+                          <th>
+                            Levels: NSSCAS; NSSCH/HIGCSE; 
+                            NSSCO/IGCSE; SC-HG; SC-SG; ANGOLAN; 
+                            A LEVEL; HSEC-GED
+                          </th>
+                          <th>
+                            Symbol
+                          </th>
+                          <th>
+                            Point
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            1
+                          </td>
+                          <td>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Subject"
+                            />
+
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Level"
+                            />
+                          </td>
+                          
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Symbol"
+                            />
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="point"
+                              readonly
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            2
+                          </td>
+                          <td>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Subject"
+                            />
+
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Level"
+                            />
+                          </td>
+                          
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Symbol"
+                            />
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="point"
+                              readonly
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            3
+                          </td>
+                           <td>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Subject"
+                            />
+
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Level"
+                            />
+                          </td>
+                          
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Symbol"
+                            />
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="point"
+                              readonly
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            4
+                          </td>
+                           <td>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Subject"
+                            />
+
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Level"
+                            />
+                          </td>
+                          
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Symbol"
+                            />
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="point"
+                              readonly
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            5
+                          </td>
+                           <td>
+
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Subject"
+                            />
+
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Level"
+                            />
+                          </td>
+                          
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="Symbol"
+                            />
+                          </td>
+                          <td>
+                             <input
+                              type="text"
+                              class="form-control"
+                              id="exampleInputName1"
+                              placeholder="point"
+                              readonly
+                            />
+                          </td>
+                        </tr>
+                      
+                      </tbody>
+                    </table>
+                  </div>
+              
+              </section>
+                <section id="school-section" class="tab">
+                
+                  <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                    <span>
+                        SECTION 7: POST – SCHOOL ACADEMIC QUALIFICATION
+                    </span>
+                      <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                        >                                               
+                          <i                             
+                          id="savedform"
+                          class="mdi mdi-timelapse mr-0"                                                          
+                          ></i> 
+                          auto-save                  
+                      </div>
+                  </h5>
+                  
+                    <div class="form-group">
+                                    <label for="exampleInputName1">Would you like to make reference to your past relevant qualification, if any?</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row" id="id_Post_acadmic_qualification">
+                                                {% for answer in Post_acadmic_qualificationForm.has_past_qualification %}
+                                                <div class="col-sm-4">
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                        {{answer}}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                  <div id="extra-qualification-section">
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong><i class="bi bi-info-circle"></i>
+                            Attach a full certified academic record issued by the awarding institution. Applicants applying with foreign qualifications
+                                  should provide NQA evaluation letter. <code>All mentioned documents should be attached under the check list section.</code>
+                            </strong>
+                            <hr />
+                            <p class="mb-0">
+                                 Where appropriate, indicate professional qualification. All documents are to be uploaded at the checklist section.
+                            </p>
+                        </div>
+
+
+                 
+                 <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          
+                          <th>
+                            Name of College/University
+                          </th>
+                          <th>
+                           Country
+                          </th>
+                          <th>
+                            Year
+                          </th>
+                         
+                          <th>
+                            Name of Programme
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          
+                          <td>
+                              {{Post_acadmic_qualificationForm.institution_name}}
+                          </td>
+                          <td>
+                              {{Post_acadmic_qualificationForm.location}}
+
+                          </td>
+                          
+                          <td>
+                            <div class="row">
+                              <div class="col-md-6">
+                              {{Post_acadmic_qualificationForm.year_start}}
+                              </div>
+                              <div class="col-md-6">
+                              {{Post_acadmic_qualificationForm.year_end}}
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                           {{Post_acadmic_qualificationForm.post_qualification}}
+
+                          </td>
+                        </tr>                       
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+              <section id="outstanding-section" class="tab">
+                
+                  <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                    <span>
+                        SECTION 8: OUTSTANDING RESULTS (if applicable)
+                    </span>
+                      <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                        >                                               
+                          <i                             
+                          id="savedform"
+                          class="mdi mdi-timelapse mr-0"                                                          
+                          ></i> 
+                          auto-save                  
+                      </div>
+                  </h5>
+                  <div class="form-group">
+                    <div class="row">         
+                        <div class="form-group">
+                          <label for="exampleInputName1">Any examination(s) taken for which you are awaiting results, or any examination to be written before enrolment?</label>
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <div class="form-group row" id="id_has_out_standing_exam">
+                                      {% for answer in Outstanding_resultForm.has_out_standing_exam %}
+                                      <div class="col-sm-4">
+                                          <div class="form-check">
+                                              <label class="form-check-label">
+                                              {{answer}}
+                                              </label>
+                                          </div>
+                                      </div>
+                                      {% endfor %}
+                                  </div>
+                              </div>
+                          </div>
+                      
+                          <div id="outstanding-exam-section">
+                            <div class="form-group">
+                                {{Outstanding_resultForm.out_standing_exam}}
+                            </div>
+                            <div class="form-group">                                
+                                  {{Outstanding_resultForm.out_standing_exam_date}}
+                            </div>
+                          </div>   
+                        </div>
+
+                    </div>
+                  </div>                           
+              </section>
+              <section id="language-section" class="tab">                
+                  
+                  <h5 class="card-description d-flex" style="border-bottom: solid 2px; border-color: grey">
+                    <span>
+                        SECTION 9: ENGLISH LANGUAGE PROFICIENCY
+                    </span>
+                      <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                        >                                               
+                          <i                             
+                          id="savedform"
+                          class="mdi mdi-timelapse mr-0"                                                          
+                          ></i> 
+                          auto-save                  
+                      </div>
+                  </h5>
+                 
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleSelectGender">What was your medium of instructions at school?</label>
+                          {{LanguageForm.school_language}}
+                        </div>
+                      </div>
+                       <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleSelectGender">What is your home language?</label>
+                          {{LanguageForm.home_language}}
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <div id="english-proficiency-section">                    
+                    <div class="form-group">
+                      <label for="exampleInputName1">Have you done a professional english course before?</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row" id="id_has_english_course">
+                                    {% for answer in LanguageForm.has_english_course %}
+                                    <div class="col-sm-4">
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                            {{answer}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>           
+                    </div> 
+                    <div class="form-group" id="english-course-section">
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        <strong><i class="bi bi-info-circle"></i></strong> If the language of instruction of your previous qualification was not English, provide details of any course(s) completed/exams passed in the use of English.
+                        <code>upload document under the checklist section</code>
+                      </div>
+                      <div id=""class="form-group">
+                          <label for="exampleInputName1">Professional English Course</label>
+                          {{LanguageForm.english_course}}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Are you applying for the University’s English Usage Programme (Short course)?</label>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group row" id="id_applying_english_course">
+                                  {% for answer in LanguageForm.applying_english_course %}
+                                  <div class="col-sm-4">
+                                      <div class="form-check">
+                                          <label class="form-check-label">
+                                          {{answer}}
+                                          </label>
+                                      </div>
+                                  </div>
+                                  {% endfor %}
+                              </div>
+                          </div>
+                        </div>           
+                    </div>
+                  </div>                   
+              </section>
+              <section id="sponsor-section" class="tab">
+                <h5 class="card-description" style="border-bottom: solid 2px; border-color: grey">
+                    SECTION 10 : FUNDING AND SPONSOR'S AGREEMENT
+                </h5>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="bi bi-info-circle"></i>
+
+                    <p class="mb-0">
+                        Provide full name and address of the entity who will be responsible for your tuition fees and other incidentials
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Full Name of the Person or Organisation</label> {{Sponsor_form.sponsor_name}}
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Postal Address </label> {{Sponsor_form.sponsor_postal_address}}
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Email</label> {{Sponsor_form.sponsor_email}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Cellphone Number</label> {{Sponsor_form.sponsor_cellphone}}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName1">Telephone Number</label> {{Sponsor_form.sponsor_telephone}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Please specify how you intend to pay for your studies?</label>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group row" id="id_sponsorship_type">
+                                {% for answer in Sponsor_form.sponsorship_type%}
+
+                                <div class="col-sm-5">
+
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        {{answer}}
+                                        </label>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="sponsor-subsection">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <strong><i class="bi bi-info-circle"></i>
+                      If a student is under sponsorship his/her sponsor and/or
+                      employer etc. is required to complete the following.
+                      </strong>
+                      <hr />
+                      <p class="mb-0">
+                          This is to certify that the above person shall be sponsor by:
+                      </p>
+                  </div>
+
+                  <div class="col-lg-12">
+                      <div class="form-group">
+                          <label for="exampleInputName1">Sponsor's signatory Name</label> {{Sponsor_form.sponsor_signatory_name}}
+                          <p>
+                              and I/we hereby agree to pay the fees as agreed upon with University authorities
+                          </p>
+                      </div>
+
+
+
+                      <div class="col-lg-12">
+                          <div class="no-gutters">
+                              <div class="row row-space">
+                                  <table class="table">
+                                      <tbody>
+                                          <div class="label">
+                                              <tr class="table-secondary">
+                                                  <th colspan="2">
+                                                      We also agree that the fees once paid are subjected to the attacched refund policy
+                                                  </th>
+                                              </tr>
+                                              <tr>
+                                                  <td>Tuition fees</td>
+                                                  <td>
+                                                      <div class="col-12">
+                                                          <div class="input-group mb-3">
+                                                              <div class="input-group-prepend">
+                                                                  <span class="input-group-text">N$</span>
+                                                              </div>
+                                                              {{Sponsor_form.tuition_fee}}
+
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Registration fees</td>
+                                                  <td>
+                                                      <div class="col-12">
+                                                          <div class="input-group mb-3">
+                                                              <div class="input-group-prepend">
+                                                                  <span class="input-group-text">N$</span>
+                                                              </div>
+                                                              {{Sponsor_form.registration_fee}}
+
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Student Fund</td>
+                                                  <td>
+                                                      <div class="col-12">
+                                                          <div class="input-group mb-3">
+                                                              <div class="input-group-prepend">
+                                                                  <span class="input-group-text">N$</span>
+                                                              </div>
+                                                              {{Sponsor_form.student_fund}}
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                              <tr>
+                                                  <td>Total</td>
+                                                  <td>
+                                                      <div class="col-12">
+                                                          <div class="input-group mb-3">
+                                                              <div class="input-group-prepend">
+                                                                  <span class="input-group-text">N$</span>
+                                                              </div>
+                                                              {{Sponsor_form.total_fee}}
+                                                          </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                          </div>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+              <section id="checklist-section" class="tab">
+                  <h5 class="card-description" style="border-bottom: solid 2px; border-color: grey">
+                      SECTION 11 : CHECK LIST
+                  </h5>
+                  <div class="form-group">
+
+                      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          <strong><i class="bi bi-info-circle"></i>
+                          Please read the following carefully before submiting your application to us.
+                          </strong>
+                          <hr />
+                          <p class="mb-0">
+                              To ensure your application is complete please tick the checklist below:
+                          </p>
+                      </div>
+
+
+                      <div class="col-lg-12">
+                          <div class="no-gutters">
+                              <div class="row row-space">
+                                  <table class="table">
+                                      <tbody>
+                                          <tr class="table-primary">
+                                              <th>Uploaded</th>
+
+                                              <th>Item</th>
+                                          </tr>
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="form-group">
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                          {% if existingDocument.certified_id_copy == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.certified_id_copy}}</span>
+                                                          {%endif%}
+                                                          {{document_form.certified_id_copy}}
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              </td>
+
+                                              <td>
+                                                  <p>
+                                                      Certified copies of ID/ Passport/
+                                                      <span class="label-warning">(Birth Certificate if the applicant has
+                                                        not received an Id yet)</span>
+                                                  </p>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                            {% if existingDocument.passport_photo == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.passport_photo}}</span>
+                                                          {%endif%}{{document_form.passport_photo}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <p>One recent passport photo</p>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                            {% if existingDocument.evidence_of_payment == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.evidence_of_payment}}</span>
+                                                          {%endif%}{{document_form.evidence_of_payment}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <p>Evidence of payment</p>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                            {% if existingDocument.foreign_qualification == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.foreign_qualification}}</span>
+                                                          {%endif%}{{document_form.foreign_qualification}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <p>
+                                                      Original foreign qulification
+                                                      <span class="label-warning">(if foreign language other than
+                                                         English)</span>
+                                                  </p>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                          {% if existingDocument.foreign_qualification_translation == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.foreign_qualification_translation}}</span>
+                                                          {%endif%}{{document_form.foreign_qualification_translation}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                of the foreign qulification
+                                                                                                                <span class="label-warning">(if foreign language other than
+                                                                                English)</span>
+                                                  </p>
+                                              </td>
+                                          </tr>
+
+                                          <tr>
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                            {% if existingDocument.namibia_highest_qualification_copy == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.namibia_highest_qualification_copy}}</span>
+                                                          {%endif%}{{document_form.namibia_highest_qualification_copy}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <p>
+                                                      Certified copy of your highest school leaving certificate or other qualifications where applicable
+                                                  </p>
+                                              </td>
+                                          </tr>
+                                          <tr>
+                                              
+                                              
+                                              <td>
+                                                  <div class="input-group">
+                                                      <div class="file-drop-area" style="width: 100%">
+                                                          {% if existingDocument.other_documents == ''%}
+                                                          <span class="choose-file-button" style="width: 25rem">Choose files</span>
+                                                          {% else %}
+                                                          <span class="choose-file-button" style="width: 25rem">{{existingDocument.other_documents}}</span>
+                                                          {%endif%}{{document_form.other_documents}}
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <td>
+                                                  <p>
+                                                      <code>For any other required document that does not fit in any of the above categories.</code>
+                                                  </p>
+                                              </td>
+                                          </tr>
+
+                                      </tbody>
+                                  </table>
+                                    
+                              </div>
+                          </div>
+                      </div>
+              </section>
+                <section id="confirmation-section" class="tab">
+                  <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+                              <h4 class="card-title">CONFIRMATION</h4>
+                              <p class="card-description">
+                                  I, <code ><span class="pr-2" id="user_first_name">{{user.first_name}}</span><span class="pr-2" id="user_last_name">{{user.last_name}}</span></code>, have read this agreement and the prospectus of International University of Management (IUM) and I understand all aspects of 
+                                  the agreement. All of the information supplied on my application, transcripts, and written work is true and accurate. All work 
+                                  submitted to the IUM is my own, except where clearly stated to the contrary. I also understand and accept that, if at any time it is 
+                                  demonstrated that I have misrepresented myself or my work, I may be dismissed from IUM, with no refund of fees paid, and any 
+                                  degree(s) awarded may be rescinded. I am equally in agreement with the rules and regulations of IUM.
+                              </p>
+
+                              {% include 'portal/partial/terms_and_conditions.html'%}
+
+                              <div class="row" style="margin-top:30px">
+                                  <div class="form-check col-sm-0 col-form-label" style="padding:0; margin:0; margin-left:10px;">
+                                      <label class=" col-sm-0 form-check-label">                                    
+                                        {{acknowledgement_form.application_form_acknowledgement}}
+                                    </label>
+                                    </div>
+                                  <div class="col-sm-9">
+                                      <label class="styled" for="acknowledge">Agree to IUM rules & regulations</label>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                        {% include 'portal/partial/application_form_final_modal.html'%}
+                </section>
+                <button type="submit" name="previousButton" class="btn btn-light" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="submit" name="submitButton"  value="submitButton" class="btn btn-primary mr-2" id="submitBtn">Submit</button> {% comment %} <button type="submit" class="btn btn-light">Next</button> {% endcomment %}
+                <button type="submit" name="nextButton" class="btn btn-light" id="nextBtn" onclick="nextPrev(1)" >Next</button>
+
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  <footer class="footer col-md-12">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted text-center text-sm-left d-block d-sm-inline-block"
+        >Copyright © 2022
+        <a href="https://www.ium.edu.na/" target="_blank">IUM</a></span>
+    </div>
+  </footer>
+    <!-- partial -->
+</div>
+<!-- main-panel ends -->
+<script>
+//MULTISTEP FORM 
+
+
+                    document.getElementById("submitBtn").style.display = "none";
+                    var step=document.getElementById("id_current_step");
+
+                    var currentTab = parseInt(step.value); // Current tab is set to be the first tab (0)
+                    showTab(currentTab); // Display the current tab
+
+                    function showTab(n) {
+                        // This function will display the specified tab of the form ...
+                        var x = document.getElementsByClassName("tab");
+                        x[n].style.display = "block";
+                        // ... and fix the Previous/Next buttons:
+                        if (n == 0) {
+                            document.getElementById("prevBtn").style.display = "none";
+                        } else {
+                            document.getElementById("prevBtn").style.display = "inline";
+                        }
+                        if (n == (x.length - 1)) {
+                            document.getElementById("nextBtn").style.display = "none";
+                            document.getElementById("submitBtn").style.display = "inline";
+                        } else {
+                            document.getElementById("nextBtn").style.display = "inline";
+                            document.getElementById("submitBtn").style.display = "none";
+
+                        }
+                        // ... and run a function that displays the correct step indicator:
+                        fixStepIndicator(n)
+                    }
+
+                    function nextPrev(n) {
+                        // This function will figure out which tab to display
+                        var x = document.getElementsByClassName("tab");
+                        // Hide the current tab:
+                        x[currentTab].style.display = "none";
+                        // Increase or decrease the current tab by 1:
+                        currentTab = currentTab + n;
+                        
+                        var step1=document.getElementById("id_current_step")
+                        step1.setAttribute('value',currentTab);
+                        console.log(step1.value);
+
+                        // Otherwise, display the correct tab:
+                        showTab(currentTab);
+                        // If the valid status is true, mark the step as finished and valid:
+                        if(currentTab!=0){
+                             document.getElementsByClassName("step")[currentTab - 1].className += " finish";
+                        }
+
+                    }
+
+                    function fixStepIndicator(n) {
+                        // This function removes the "active" class of all steps...
+                        var i, x = document.getElementsByClassName("step");
+                        for (i = 0; i < x.length; i++) {
+                            x[i].className = x[i].className.replace(" active", "");
+                        }
+                        //... and adds the "active" class to the current step:
+                        x[n].className += " active";
+                    }
+                </script>
+                <script>                     
+                        
+                        // nationalitySection visibility
+                        $(".nationalitySection").hide();
+                        $("#namibianIdSection").show();
+                        $("#id_nationality").on("change", function () {
+                          console.log("id_nationality");
+                          if ($(this).val() == "NA") {
+                            $(".nationalitySection").hide();
+                            $("#namibianIdSection").show();
+                          } else {
+                            $(".nationalitySection").show();
+                            $("#namibianIdSection").hide();
+                          }
+                        });
+
+                        //APPLICATION IS BASED ON
+                        let applicationBase = document.getElementById("id_based_on_level");
+                        let employementMatureEntrySection = document.getElementById("employement-matureEntry-section");
+                        let basedOnOtherSection = document.getElementById("based-on-other-section")
+                        employementMatureEntrySection.style.display = "none";
+                        basedOnOtherSection.style.display = "none";
+                                                            
+                        if (applicationBase.value == 'Mature-age') {
+                                employementMatureEntrySection.style.display = "block";
+                            }else{
+                                employementMatureEntrySection.style.display = "none";
+                            }
+                      
+                          if (applicationBase.value == 'Other-qualitication') {
+                                basedOnOtherSection.style.display = "block";
+                            }else{
+                                basedOnOtherSection.style.display = "none";
+                            }
+                        applicationBase.addEventListener('change', () => {
+                            if (applicationBase.value == 'Mature-age') {
+                                employementMatureEntrySection.style.display = "block";
+                            }else{
+                                employementMatureEntrySection.style.display = "none";
+                            }
+                              if (applicationBase.value == 'Other-qualitication') {
+                                basedOnOtherSection.style.display = "block";
+                            }else{
+                                basedOnOtherSection.style.display = "none";
+                            }
+                        });
+                        
+                          {% comment %} $("#staticBackdrop_grade_12").hide(); {% endcomment %}
+                          $("#id_based_on_level").change(function () {
+                            if ($(this).val()=="Grade-12" || $(this).val()=="Grade-11") {
+                              console.log("grade");
+                              $("#staticBackdrop_grade_12").modal("show");
+                            }
+                            
+                          });
+                        
+                                                            
+                        
+
+                          $("#id_programme").on("change", function(){
+                            console.log("changes");
+                            const url = $("#section1Form").attr("data-course-url");//fetch the url
+                            const programme_id = $(this).val(); //get the programme id
+
+                              $.ajax({
+                              url: url,                                          
+                              data: { 'programme_id': programme_id },
+                              success: function (data){
+                                console.log(data);
+                                /*$("#id_course_first_choice").html(data); 
+                                $("#id_course_second_choice").html(data);*/  
+                                
+                                  let html_data = '<option value="">---------</option>';
+                                  data.forEach(function (course) {
+                                      html_data += `<option value="${course.id}">${course.name}</option>`
+                                  });
+                                  console.log(html_data);
+                                  $("#id_course_first_choice").html(html_data);
+                                  // $("#id_course_second_choice").html(html_data);
+                              
+                              },                                         
+                          });  
+                          });
+
+                          
+
+                          
+                          $("#id_course_first_choice").on("change", function(){
+                            console.log("changes");
+                            const url = $("#section1Form").attr("data-course-url");//fetch the url
+                            const course_id = $(this).val(); //get the programme id
+
+                              $.ajax({
+                              url: url,                                          
+                              data: { 'course_id': course_id },
+                              success: function (data){
+                                console.log(data);
+                                data.forEach(function (course) {
+                                  //Programme
+
+                                  $("#id_programme").val(course.level).prop('selected', true)
+
+                                  //Period
+                                  $("#id_prefered_period_0").attr("disabled", "disabled");
+                                    
+                                  $("#id_prefered_period_1").attr("disabled", "disabled");
+                        
+                                  $("#id_prefered_period_2").attr("disabled", "disabled");
+                                  
+                                  for (var i = 0; i < course.mode_of_study.length; i++) {
+                                    $("#id_prefered_period_0").prop("checked", true);
+                                    if(course.mode_of_study.includes('Full-time')){
+                                      console.log("Full-time")                                                 //console.log(course.mode_of_study);
+                                      $("#id_prefered_period_0").removeAttr("disabled");
+                                    }else{
+                                        $("#id_prefered_period_1").prop("checked", true);
+                                    }
+                                    if(course.mode_of_study.includes('Part-time')){
+                                      console.log("Part-time")  
+                                      $("#id_prefered_period_1").removeAttr("disabled");
+                                    }else{
+                                        $("#id_prefered_period_2").prop("checked", true);
+                                    }
+                                    if(course.mode_of_study.includes('Online')){
+                                      console.log("Online")  
+                                      $("#id_prefered_period_2").removeAttr("disabled");
+                                    }else{
+                                        $("#id_prefered_period_0").prop("checked", true);
+                                    }
+                                  }
+
+                                });
+                                
+                              },                                         
+                          });  
+                          });
+
+                         
+
+                          //SET THE FULL NAME AND SURNAME AUTOMATICALLY
+                          let full_name = document.getElementById("id_full_name");
+                          let last_name = document.getElementById("id_surname");
+
+                          let user_first_name = document.getElementById("user_first_name").innerHTML;
+                          let user_last_name = document.getElementById("user_last_name").innerHTML;
+
+                          full_name.setAttribute('value', user_first_name)
+                          last_name.setAttribute('value', user_last_name)   
+
+
+
+                          // extra-qualification-section visibility
+                            $("#extra-qualification-section").hide();
+                            $("#id_Post_acadmic_qualification").change(function () {
+                              if ($("#id_has_past_qualification_0").is(":checked")) {
+                                console.log("checked");
+                                $("#extra-qualification-section").hide();
+                              }
+                              if ($("#id_has_past_qualification_1").is(":checked")) {
+                                console.log("unchecked");
+
+                                $("#extra-qualification-section").show();
+                              }
+                            });
+
+                            // outstanding-exam-section visibility
+                            $("#outstanding-exam-section").hide();
+                            $("#id_has_out_standing_exam").change(function () {
+                              if ($("#id_has_out_standing_exam_0").is(":checked")) {
+                                console.log("checked");
+                                $("#outstanding-exam-section").hide();
+                              }
+                              if ($("#id_has_out_standing_exam_1").is(":checked")) {
+                                console.log("unchecked");
+                                $("#outstanding-exam-section").show();
+                              }
+                            });
+
+                            // english-proficiency-section visibility
+                            $("#english-proficiency-section").hide();
+                            $("#id_school_language").change(function () {
+                              if ($(this).val() == "English") {
+                                console.log("ENGLISH");
+                                $("#english-proficiency-section").hide();
+                              }else{
+                                console.log("NO ENGLISH");
+                                $("#english-proficiency-section").show();
+                              }
+                            
+                            });
+
+                            // english-course-section visibility
+                            $("#english-course-section").hide();
+                            $("#id_has_english_course").change(function () {
+                              if ($("#id_has_english_course_0").is(":checked")) {
+                                console.log("english course");
+                                $("#english-course-section").hide();
+                              }
+                              if ($("#id_has_english_course_1").is(":checked")) {
+                                console.log("no english course");
+                                $("#english-course-section").show();
+                              }
+                            
+                            });
+                            id_sponsorship_type
+                            // sponsor-subsection visibility
+                            $("#sponsor-subsection").hide();
+                            $("#id_sponsorship_type").change(function () {
+                              if ($("#id_sponsorship_type_0").is(":checked")) {
+                                console.log("self-sponsored");
+                                $("#sponsor-subsection").hide();
+                              }
+                              if ($("#id_sponsorship_type_1").is(":checked")) {
+                                console.log("sponsored");
+                                $("#sponsor-subsection").show();
+                              }                       
+                            });
+
+                            //form agreement acceptance
+                            $("#id_application_form_acknowledgement").prop("disabled", true);
+                            $("#term-and-condition-scroll").on("scroll", function () {
+                              console.log("scroll");
+
+                              if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                                $("#id_application_form_acknowledgement").prop("disabled", false);
+                                $("#id_application_form_acknowledgement").prop("checked", true);
+                              } else {
+                                //$("#id_application_form_acknowledgement").prop("disabled", true);
+                                $("#id_application_form_acknowledgement").prop("checked", false);
+                              }
+                            });
+                </script>
+              {%endblock content%}

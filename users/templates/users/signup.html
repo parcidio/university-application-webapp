@@ -1,0 +1,64 @@
+{% extends "users/base.html" %} {% block content %} {%load static %}
+<div class="container-scroller">
+  <div class="container-fluid page-body-wrapper full-page-wrapper">
+    <div class="content-wrapper d-flex align-items-center auth px-0">
+      <div class="row w-100 mx-0">
+        <div class="col-lg-4 mx-auto">
+          <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+            <div
+              class="brand-logo text-center"
+              style="background-color: maroon"
+            >
+              <img src="{% static 'users/images/IUM Logo.png'%}" alt="logo" />
+            </div>
+            <h4 class="text-center">Signup</h4>
+            <h6 class="font-weight-light">Create an account.</h6>
+
+            <form class="pt-3" method="POST">
+              {% csrf_token %} {%for field in form%}
+              <div class="form-group">{{field}}</div>
+              {%endfor%}
+              <div class="mb-4">
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="checkbox-decoration form-check-input"
+                    style="margin-left: 3%"
+                  />
+
+                  <label class="form-check-label text-muted">
+                    I agree to all
+                    <a href="{%url 'terms-conditions'%}">Terms & Conditions</a>
+                  </label>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <button
+                  type="submit"
+                  name="login"
+                  class="btn btn-block btn-lg font-weight-medium auth-form-btn"
+                  style="
+                    background-color: maroon;
+                    color: white;
+                    border-color: black;
+                  "
+                >
+                  SIGN UP
+                </button>
+              </div>
+              <div class="text-center mt-4 font-weight-light">
+                Already have an account?
+                <a href="{%url 'login'%}" class="text-primary">Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+{%endblock content%}

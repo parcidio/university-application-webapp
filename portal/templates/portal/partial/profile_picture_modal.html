@@ -1,0 +1,57 @@
+<!-- Modal -->
+<div
+  class="modal fade deleteConfirmationModal"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  caller-id=""
+  role="dialog"
+  aria-labelledby="deleteConfirmationModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="display: flex; flex-direction: column">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <strong>PROFILE PICTURE</strong>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body" style="display: flex; flex-direction: row">
+          
+          <diV>
+            <img
+              class="translate-middle"
+              src="{{user.profile.profile_picture.url}}"
+              data-toggle="tooltip"
+              data-placement="right"
+              title="Tooltip on right"
+            />
+          </div>
+          <div class="modal-footer content-wrapper" style="display: flex; flex-direction: column">
+            <button
+                type="button"
+                class="btn btn-light btn-secondary btn-icon mr-3 d-none d-md-block"
+                data-toggle="modal"
+                data-target=".deleteConfirmationModal"
+                id="deleteButton"
+              >
+                <i class="mdi mdi-download text-muted"></i>
+              </button>
+            <p>Size: {{user.profile.profile_picture.size|filesizeformat}}</p>
+            <p>Width: {{user.profile.profile_picture.width}}</p>
+            <p>Height: {{user.profile.profile_picture.height}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--end of Modal-->

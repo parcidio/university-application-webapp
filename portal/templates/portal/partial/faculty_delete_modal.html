@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div
+  class="modal fade deleteConfirmationModal{{faculties.id}}"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  caller-id=""
+  role="dialog"
+  aria-labelledby="deleteConfirmationModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          <strong>CONFIRM YOUR ACTION</strong>
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body content-wrapper">
+        Are you sure want to delete the following faculty:<br />
+        <strong>{{faculties.name}}</strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <a
+          type="button"
+          class="btn btn-danger"
+          style="padding: 5"
+          href="{% url 'portal-faculty-delete' faculties.id %}"
+        >
+          Save Changes
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end of Modal-->

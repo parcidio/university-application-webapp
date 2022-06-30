@@ -1,0 +1,66 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-grid-large text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;System&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Terms and Conditions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <div id="add_faculty_section" class="row">
+      <div class="col-md-12 stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-md-12 stretch-card">
+                <p class="card-title">Terms and Conditions</p>
+            </div>
+            <form class="forms-sample" action="" method="POST">
+                
+            {% csrf_token %}
+                 
+            <div class="form-group">
+              <div class="row">
+                {{form.media}}
+                <div class="col-md-12">
+                    <div class="form-group">
+                        {{form.title}}
+                    </div>
+                </div>
+                <div class="col-md-12">    
+                    <div class="form-group">
+                        {{form.general_rule}}
+                    </div>
+                </div>
+                
+
+              </div> 
+                   
+               
+              <button type="submit" class="btn btn-primary mr-2" id="submitBtn">Update</button>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:../../partials/_footer.html -->
+  {% include 'portal/partial/footer.html' %}
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+
+{%endblock content%}

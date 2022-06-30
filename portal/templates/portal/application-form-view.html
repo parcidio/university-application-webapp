@@ -1,0 +1,626 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-file-document-box-outline text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Application form&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">view</p>
+            </div>
+          </div>
+          {% if application.owner == user or user.is_superuser %}
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            {% if application.owner == user  %}
+            <a href="{% url 'portal-application-form-update' application.id %}">
+            <button
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+            >
+              <i class="mdi mdi-pencil text-muted"></i>
+            </button>
+          </a>
+           {%endif%}
+          {% if application.owner == user or user.is_superuser %}
+            <button
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+            >
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+          </div>
+          {%endif%}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9 col-md-push-6 grid-margin">
+        <div class="card" id="course-choice">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+               <div class="row">  <h4 class="col-md-10">Course choice</h4><div class="col-md-2 badge badge-secondary">ID:{{application.id}}</div>  </div>
+              <div class="row m-2 col-md-12">                               
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Programme:</div>
+                    <div class="col-md-6 text-primary">{{application.programme}}</div>                       
+                  </div>
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Course first:</div>
+                    <div class="col-md-6 text-primary">{{application.category}}</div>                       
+                  </div>
+              </div>
+              <div class="row m-2 col-md-12">                               
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Period:</div>
+                    <div class="col-md-6 text-primary">{{application.course_first_choice}}</div>                       
+                  </div>
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Course second:</div>
+                    <div class="col-md-6 text-primary">{{application.course_second_choice}}</div>                       
+                  </div>
+              </div>
+              <div class="row m-2 col-md-12">                               
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Campus:</div>
+                    <div class="col-md-6 text-primary">{{application.prefered_campus}}</div>                       
+                  </div>
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Prefered period:</div>
+                    <div class="col-md-6 text-primary">{{application.prefered_period}}</div>                       
+                  </div>
+              </div>
+             
+               <div class="row m-2 col-md-12">                               
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Creation date:</div>
+                    <div class="col-md-6 text-primary">{{application.creation_date}}</div>                       
+                  </div>
+                  <div class="row col-md-6">             
+                    <div class="col-md-6">Submission date:</div>
+                    <div class="col-md-6 text-primary">{{application.submition_date}}</div>                       
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="personal-detail">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Personal details</h4>
+              <div class="m-2">
+                <div class="row">
+                  <div class="row">
+               <img
+                  class="ID-picture col-md-3 pr-5"
+                  src="{{user.profile.profile_picture.url}}"
+                  alt="profile"
+                />
+                
+                <div class="col-md-9">                 
+                  <div class="row m-2">             
+                    <div class="col-md-6">Title</div>
+                    <div class="col-md-6 text-primary">{{profile.title}}</div> 
+                       
+                  </div>
+                  <div class="row m-2">  
+                    <div class="col-md-6">Gender</div>
+                    <div class="col-md-6 text-primary">{{profile.gender}}</div>  
+                  </div>
+                  <div class="row m-2">   
+                    <div class="col-md-6">Name </div>
+                    <div class="col-md-6 text-primary">{{profile.full_name}}</div>  
+                  </div>
+                  <div class="row m-2">                      
+                    <div class="col-md-6">Surname </div>
+                    <div class="col-md-6 text-primary">{{profile.surname}} </div>   
+                  </div>
+                  <div class="row m-2">                       
+                    <div class="col-md-6">Nationality</div>
+                    <div class="col-md-6 text-primary">{{profile.nationality.name}} </div>   
+                  </div>
+                </div>
+                <div class="row my-2 col-md-12">
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Namibian region</div>
+                      <div class="col-md-6 text-primary">{{profile.namibian_region}} </div>   
+                    </div>
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Date of birth</div>
+                      <div class="col-md-6 text-primary">{{profile.date_of_birth}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Marital status</div>
+                      <div class="col-md-6 text-primary">{{profile.marital_status}} </div>   
+                    </div>
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">ID number</div>
+                      <div class="col-md-6 text-primary">{{profile.id_number}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Passport number</div>
+                      <div class="col-md-6 text-primary">{{profile.passport_number}} </div>   
+                    </div>
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Passport expiry date</div>
+                      <div class="col-md-6 text-primary">{{profile.passport_expiry_date}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Permit number</div>
+                      <div class="col-md-6 text-primary">{{profile.permit_number}} </div>   
+                    </div>
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Permit type</div>
+                      <div class="col-md-6 text-primary">{{profile.passport_number}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Passport number</div>
+                      <div class="col-md-6 text-primary">{{profile.permit_type}} </div>   
+                    </div>
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Permit expiry date</div>
+                      <div class="col-md-6 text-primary">{{profile.permit_expiry_date}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                    <div class="row col-md-6">                       
+                      <div class="col-md-6">Has medical condition</div>
+                      <div class="col-md-6 text-primary">{{profile.has_medical_condition}} </div>   
+                    </div><div class="row col-md-6">                       
+                      <div class="col-md-6">Has medical needs</div>
+                      <div class="col-md-6 text-primary">{{profile.has_medical_needs}} </div>   
+                    </div>
+                  </div>
+                  <div class="row m-2 col-md-12">
+                  <div class="row col-md-6">                       
+                    <div class="col-md-6">Permit expiry date</div>
+                    <div class="col-md-6 text-primary">{{profile.permit_expiry_date}} </div>   
+                  </div>
+                  <div class="row col-md-6">                       
+                    <div class="col-md-6">Medical condition description</div>
+                    <div class="col-md-6 text-primary">{{profile.medical_condition_description}} </div>   
+                  </div>
+                </div>
+                </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="contact">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Contact</h4>              
+              <div class="row m-2 col-md-12">                               
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Cellphone number 1:</div>
+                    <div class="col-md-6 text-primary">{{contact.cellphone_number_1}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Cellphone number 2:</div>
+                    <div class="col-md-6 text-primary">{{contact.cellphone_number_2}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Telephone number:</div>
+                    <div class="col-md-6 text-primary">{{contact.telephone}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Email:</div>
+                    <div class="col-md-6 text-primary">{{contact.email}}</div>                       
+                  </div>                 
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Country of origin postal address:</div>
+                    <div class="col-md-6 text-primary">{{contact.origin_postal_address}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Country of origin resisdential address:</div>
+                    <div class="col-md-6 text-primary">{{contact.origin_residential_address}}</div>                       
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="next-of-kin">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Next of Kin</h4>
+               <div class="row m-2 col-md-12">                               
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Title:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_title}}</div>                       
+                  </div>
+                   <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">ID number:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_id_number}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">First name:</div>
+                    <div class="col-md-6 text-primary">{{kin.first_name}}</div>                       
+                  </div>
+                   <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Last name:</div>
+                    <div class="col-md-6 text-primary">{{kin.last_name}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Relationship type:</div>
+                    <div class="col-md-6 text-primary">{{kin.relationship_type}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Email:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_email}}</div>                       
+                  </div>
+                   <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Cellphone number:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_cellphone_number}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Telephone:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_telephone}}</div>                       
+                  </div>
+                   <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Residential address:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_residential_address}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Postal address:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_postal_address}}</div>                       
+                  </div>
+                   
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Occupation:</div>
+                    <div class="col-md-6 text-primary">{{kin.kin_occupation}}</div>                       
+                  </div>
+                  <div class="row pb-4 col-md-6">             
+                    <div class="col-md-6">Work telephone:</div>
+                    <div class="col-md-6 text-primary">{{kin.Work_telephone}}</div>                       
+                  </div>   
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="card" id="employement-detail">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Employement details</h4>
+              <div class="row m-2 col-md-12">                               
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employer name:</div>
+                  <div class="col-md-6 text-primary">{{employer.employer_name}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Your occupation:</div>
+                  <div class="col-md-6 text-primary">{{employer.occupation}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employer telephone:</div>
+                  <div class="col-md-6 text-primary">{{employer.employer_telephone}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employer email:</div>
+                  <div class="col-md-6 text-primary">{{employer.employer_email}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employement start date:</div>
+                  <div class="col-md-6 text-primary">{{employer.start_date}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employement end date:</div>
+                  <div class="col-md-6 text-primary">{{employer.end_date}}</div>                       
+                </div>                   
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Employement duties:</div>
+                  <div class="col-md-6 text-primary">{{employer.duties}}</div>                       
+                </div>                                   
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="school-leaving">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>School leaving and other qualifications</h4>
+              <div class="row m-2 col-md-12">                               
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">School name:</div>
+                  <div class="col-md-6 text-primary">{{school_leaving.school_name}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Heighest grade:</div>
+                  <div class="col-md-6 text-primary">{{school_leaving.highest_grade}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Exam authority:</div>
+                  <div class="col-md-6 text-primary">{{school_leaving.exam_authority}}</div>                       
+                </div> 
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Exam year:</div>
+                  <div class="col-md-6 text-primary">{{school_leaving.exam_year}}</div>                       
+                </div>                
+              </div>
+              <h4>School subjects</h4>
+              <div class="row m-2 col-md-12">                               
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body" id="outstanding">
+            <div class="template-demo text-muted">
+              <h4>Outstanding result</h4>
+              <div class="row m-2 col-md-12">                               
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Have outstanding exam:</div>
+                  <div class="col-md-6 text-primary">{{outstanding_result.has_out_standing_exam}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Outstanding Exam:</div>
+                  <div class="col-md-6 text-primary">{{outstanding_result.out_standing_exam}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Outstanding exam date:</div>
+                  <div class="col-md-6 text-primary">{{outstanding_result.out_standing_exam_date}}</div>                       
+                </div>                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="language">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Language</h4>
+              <div class="row m-2 col-md-12">                               
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Language of instruction:</div>
+                  <div class="col-md-6 text-primary">{{language.school_language}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Home language:</div>
+                  <div class="col-md-6 text-primary">{{language.home_language}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Has done english course:</div>
+                  <div class="col-md-6 text-primary">{{language.has_english_course}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">English course done:</div>
+                  <div class="col-md-6 text-primary">{{language.english_course}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Applying for the IUM english course:</div>
+                  <div class="col-md-6 text-primary">{{lasnguage.applying_english_course}}</div>                       
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="funding">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Funding</h4>
+              <div class="row m-2 col-md-12">                               
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor name:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_name}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor signatory name:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_signatory_name}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsorship type:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsorship_type}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor's postal address:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_postal_address}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor's cellphone:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_cellphone}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor's telephone:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_telephone}}</div>                       
+                </div>
+                <div class="row pb-4 col-md-6">             
+                  <div class="col-md-6">Sponsor's email:</div>
+                  <div class="col-md-6 text-primary">{{sponsor.sponsor_email}}</div>                       
+                </div>                
+              </div>
+              <hr>
+              <div class="row m-2 col-md-12">             
+                <div class="col-md-6">Tuition fee:</div>
+                <div class="col-md-6 text-primary">N$ {{sponsor.tuition_fee}}</div>                       
+              </div>
+              <div class="row m-2 col-md-12">             
+                <div class="col-md-6">Registration fee:</div>
+                <div class="col-md-6 text-primary">N$ {{sponsor.registration_fee}}</div>                       
+              </div>
+              <div class="row m-2 col-md-12">             
+                <div class="col-md-6">Student fund:</div>
+                <div class="col-md-6 text-primary">N$ {{sponsor.student_fund}}</div>                       
+              </div>
+              <div class="row m-2 col-md-12">             
+                <div class="col-md-6">Total Fee:</div>
+                <div class="col-md-6 text-primary">N$ {{sponsor.total_fee}}</div>                       
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" id="documents">
+          <div class="card-body">
+            <div class="template-demo text-muted">
+              <h4>Documents</h4>
+              
+              <div class="row col-md-12">
+                <div class="row m-2 col-md-12"> 
+                  {% if document.medical_documents != '' %}
+                  <div class="col-md-6">                     
+                    <a href="{{document.medical_documents.url}}" type="button" target="_blank" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Medical documents
+                    </a>  
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Medical documents
+                    </button>  
+                  </div>
+                  {% endif %}
+                  {% if document.certified_id_copy != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.certified_id_copy.url}}" type="button" target="_blank" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      ID copy
+                    </a>
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO ID copy
+                    </button>  
+                  </div>                  
+                  {% endif%}
+                </div>
+                <div class="row m-2 col-md-12"> 
+                   {% if document.evidence_of_payment != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.evidence_of_payment.url}}" type="button" target="_blank" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Evicence of payment
+                    </a>
+                  </div> 
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO Evicence of payment
+                    </button>  
+                  </div>
+                  {% endif %}
+                  {% if document.foreign_qualification != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.foreign_qualification.url}}" type="button" target="_blank" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Foreign qualification
+                    </a>
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO Foreign qualification
+                    </button>  
+                  </div>
+                  {% endif %}
+                </div>
+                <div class="row m-2 col-md-12"> 
+                  {% if document.foreign_qualification != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.foreign_qualification.url}}" type="button" target="_blank"class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Foreign qualification translation
+                    </a>
+                  </div> 
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO Foreign qualification translation
+                    </button>  
+                  </div>
+                  {%endif%}  
+                  {% if document.namibia_highest_qualification_copy != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.namibia_highest_qualification_copy.url}}" target="_blank" type="button" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Namibia highest qualification
+                    </a>
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO Namibia highest qualification
+                    </button>  
+                  </div>
+                  {% endif %}
+                </div>  
+                <div class="row m-2 col-md-12">
+                 {% if document.other_documents != '' %}
+                  <div class="col-md-6"> 
+                    <a href="{{document.other_documents.url}}" target="_black" type="button" class="btn btn-inverse-primary btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      Other documents
+                    </a>
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">                     
+                    <button type="button" target="_blank" class="btn btn-inverse-danger btn-icon-text">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i>
+                      NO Other documents
+                    </button>  
+                  </div>
+                  {% endif %}
+                </div>                         
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sticky-sidebar col-md-3 col-md-pull-6">
+        <div class="right-nav-content-section">
+          <h4 class="card-title">Form navigation</h4>
+          <p class='text-muted'>
+            <ul class="list-group">
+              <a href="#course-choice"><li class="list-group-item list-group-item-light list-group-item-action">Course choice</li></a>
+              <a href="#personal-detail"><li class="list-group-item list-group-item-light list-group-item-action">Personal details</li></a>
+              <a href="#contact"><li class="list-group-item list-group-item-light list-group-item-action">Contact</li></a>
+              <a href="#next-of-kin"><li class="list-group-item list-group-item-light list-group-item-action">Next of Kin</li></a>
+              <a href="#employement-detail"><li class="list-group-item list-group-item-light list-group-item-action">Employement details</li></a>
+              <a href="#school-leaving"><li class="list-group-item list-group-item-light list-group-item-action">School leaving and other qualifications</li></a>
+              <a href="#outstanding"><li class="list-group-item list-group-item-light list-group-item-action">Outstanding results</li></a>
+              <a href="#language"><li class="list-group-item list-group-item-light list-group-item-action">Language</li></a>
+              <a href="#funding"><li class="list-group-item list-group-item-light list-group-item-action">Funding</li></a>
+              <a href="#documents"><li class="list-group-item list-group-item-light list-group-item-action">Documents</li></a>
+              <a href="#"><li class="list-group-item list-group-item-info list-group-item-info list-group-item-action">etc</li></a>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <!-- content-wrapper ends -->
+      <!-- partial:../../partials/_footer.html -->
+
+      <!-- partial -->
+    </div>
+
+    <!-- partial -->
+
+    <!-- main-panel ends -->
+    {%endblock content%}
+    
+  </div>
+</div>
+ {% include 'portal/partial/footer.html' %}

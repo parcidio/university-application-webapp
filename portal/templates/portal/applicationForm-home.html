@@ -1,0 +1,226 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/styles/bootstrap4/bootstrap.min.css'%}"
+/>
+<link
+  href="{%static 'portal/plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}"
+  rel="stylesheet"
+  type="text/css"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/plugins/OwlCarousel2-2.2.1/animate.css'%}"
+/>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/styles/main_styles.css'%}"
+/>
+
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{%static 'portal/styles/responsive.cs'%}s"
+/>
+
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-file-document-box-outline text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Application forms&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Home</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- content-wrapper ends -->
+      <div class="card">
+        <!-- Courses -->
+        <div class="courses card-body">
+          <div class="courses_background"></div>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <h2 class="section_title text-center">APPLICATION FORMS</h2>
+              </div>
+            </div>
+                    <div class="row courses_row">
+              <!-- Course -->             
+                 
+              <a>              
+               
+              </a>
+            {% for value, text in form.category.field.choices %}
+                     <div class="col-lg-4 course_col" >
+                  <form method='post'>
+                      {% csrf_token %}
+                    <div class="course">
+                      <div class="course_body">
+                        <div class="course_title">
+                         {{text}}
+
+                        </div> 
+
+                        {% comment %} This input is an customized widget, which enables to identify which form is to be completed {% endcomment %}
+                        <div class="ui slider checkbox">
+                          <input id="id_providers_{{ forloop.counter0 }}" name="{{ form.category.name }}" type="checkbox" value="{{ value }}" checked="checked" style="display:none">   
+                        </div>                                     
+                      </div>
+                      <div
+                        class="course_footer d-flex flex-row align-items-center justify-content-start bg-light" 
+                      > 
+                        <div class="course_students">
+                          <i class="fa fa-user" aria-hidden="true"></i
+                          ><span>80</span>
+                        </div>
+                         <div class="course_rating ml-auto" style="color: #4d83ff; cursor: pointer;"
+                         >                                               
+                              <i                             
+                              id="savedform"
+                              class="mdi mdi-timelapse mr-0"                                                          
+                              ></i> 
+                              saved                    
+                        </div>
+                        <div class="course_mark course_free trans_200">
+                          {% comment %} <button type="submit" name="apply" value="apply" style="color:white"
+                            >apply</button
+                          > {% endcomment %}
+                          <button type="button" name="apply" value="apply" style="color:white"
+                          data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ forloop.counter0 }}"
+                            >apply</button
+                          >
+                        </div>
+                        <div>{% include 'portal/partial/application_saved_modal.html' %}</div>
+                        
+                      </div>
+                    
+                    </div>
+                    </div>
+                  </form>
+
+                  <!-- Button trigger modal -->
+                
+
+               
+                     {%endfor%}
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div id="faqs" class=" card-body active">
+          <div class="container">
+            <div class="row row-lg-eq-height">
+              <!-- FAQs -->
+              <div class="faqs">
+                <div class="panel_title">FAQs</div>
+                <div class="accordions">
+                  <div class="elements_accordions">
+                    <div class="accordion_container">
+                      <div
+                        class="accordion d-flex flex-row align-items-center active"
+                      >
+                        <div>Can I enroll in two courses at the same time?</div>
+                      </div>
+                      <div class="accordion_panel">
+                        <p>
+                          Nam egestas lorem ex, sit amet commodo tortor faucibus
+                          a. Suspendisse commodo, turpis a dapibus fermentum,
+                          turpis ipsum rhoncus massa, sed commodo nisi lectus id
+                          ipsum. Sed nec elit vehicula, aliquam neque euismod,
+                          porttitor ex. Nam consequat iaculis maximus.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="accordion_container">
+                      <div class="accordion d-flex flex-row align-items-center">
+                        <div>What is the refund policy?</div>
+                      </div>
+                      <div class="accordion_panel">
+                        <p>
+                          Nam egestas lorem ex, sit amet commodo tortor faucibus
+                          a. Suspendisse commodo, turpis a dapibus fermentum,
+                          turpis ipsum rhoncus massa, sed commodo nisi lectus id
+                          ipsum. Sed nec elit vehicula, aliquam neque euismod,
+                          porttitor ex. Nam consequat iaculis maximus.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="accordion_container">
+                      <div class="accordion d-flex flex-row align-items-center">
+                        <div>How much is the registration fee?</div>
+                      </div>
+                      <div class="accordion_panel">
+                        <p>
+                          Nam egestas lorem ex, sit amet commodo tortor faucibus
+                          a. Suspendisse commodo, turpis a dapibus fermentum,
+                          turpis ipsum rhoncus massa, sed commodo nisi lectus id
+                          ipsum. Sed nec elit vehicula, aliquam neque euismod,
+                          porttitor ex. Nam consequat iaculis maximus.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="accordion_container">
+                      <div class="accordion d-flex flex-row align-items-center">
+                        <div>Can someone else apply on my behalf?</div>
+                      </div>
+                      <div class="accordion_panel">
+                        <p>
+                          Yes... the applicant (the owner of the application)
+                          should right a letter naming the person applying as
+                          their delegate.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       </div>
+      </div>
+      <!-- partial:../../partials/_footer.html -->
+      {% include 'portal/partial/footer.html' %}
+      <!-- partial -->
+
+      <!-- main-panel ends -->
+      <script src="{%static 'portal/js/jquery-3.6.0.min.js'%}"></script>
+
+      {% comment %} <script src="{%static 'portal/js/jquery-3.2.1.min.js'%}"></script> {% endcomment %}
+      <!-- <script src="styles/bootstrap4/popper.js"></script> -->
+      <!-- <script src="styles/bootstrap4/bootstrap.min.js"></script> -->
+      <!-- <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script> -->
+      <!-- <script src="plugins/easing/easing.js"></script> -->
+      <script src="{%static 'portal/js/custom.js'%}"></script>
+      <script src="{%static 'portal/js/course.js'%}"></script>
+    </div>
+  </div>
+</div>
+{%endblock content%}

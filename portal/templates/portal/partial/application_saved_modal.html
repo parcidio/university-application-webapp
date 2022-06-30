@@ -1,0 +1,195 @@
+<div
+  class="modal fade"
+  id="staticBackdrop{{ forloop.counter0 }}"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="staticBackdropLabel">
+          PREVIOUSLY SAVED {{text}} FORM
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {%if text == 'Shortcourse'%}
+      <div class="modal-body">
+        {% for existingApplication in existingShortcourseApplications %}
+        <a href="{% url 'portal-registration-form-shortcourse-update'%}">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row icons-list d-grid gap-3 m-2 mt-2 mb-0">
+              <div
+                class="col-sm-12 col-md-12 col-lg-12 p-2 mt-2 bg-light border card-hover"
+              >
+                <input
+                  name="saved_form_id"
+                  value="{{existingApplication.id}}"
+                  class="d-none"
+                />
+
+                <div
+                  class="col-sm-3 col-md-3 col-lg-3 tooltip-test"
+                  title="{{existingApplication.id}}"
+                >
+                  {{existingApplication.id}}
+                </div>
+                <div
+                  class="col-sm-6 col-md-6 col-lg-6 tooltip-test"
+                  title="Date it was last updated"
+                >
+                  {{existingApplication.creation_date}}
+                </div>
+                <div
+                  class="col-sm-2 col-md-2 col-lg-2 tooltip-test"
+                  title="Step"
+                >
+                  {{existingApplication.current_step}}
+                </div>
+
+                <div class="col-sm-1 col-md-1 col-lg-1" style="float: right">
+                  <button
+                    type="submit"
+                    name="delete_saved"
+                    value="delete_saved"
+                  >
+                    <i class="mdi mdi-close"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </a>
+        {% endfor %}
+      </div>
+      {%elif text == 'Undergraduate'%}
+      <div class="modal-body">
+        {% for existingApplication in existingUndergraduateApplications %}
+        <a href="{% url 'portal-registration-form-undergraduate-update' %}">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row icons-list d-grid gap-3 m-2 mt-2 mb-0">
+              <div
+                class="col-sm-12 col-md-12 col-lg-12 p-2 mt-2 bg-light border card-hover"
+              >
+                <input
+                  name="saved_form_id"
+                  value="{{existingApplication.id}}"
+                  class="d-none"
+                />
+
+                <div
+                  class="col-sm-3 col-md-3 col-lg-3 tooltip-test"
+                  title="{{existingApplication.id}}"
+                >
+                  {{existingApplication.id}}
+                </div>
+                <div
+                  class="col-sm-6 col-md-6 col-lg-6 tooltip-test"
+                  title="Date it was last updated"
+                >
+                  {{existingApplication.creation_date}}
+                </div>
+                <div
+                  class="col-sm-2 col-md-2 col-lg-2 tooltip-test"
+                  title="Step"
+                >
+                  {{existingApplication.current_step}}
+                </div>
+
+                <div class="col-sm-1 col-md-1 col-lg-1" style="float: right">
+                  <button
+                    type="submit"
+                    name="delete_saved"
+                    value="delete_saved"
+                  >
+                    <i class="mdi mdi-close"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </a>
+        {% endfor %}
+      </div>
+      {%elif text == 'Postgraduate'%}
+      <div class="modal-body">
+        {% for existingApplication in existingPostgraduateApplications %}
+        <a href="{% url 'portal-registration-form-undergraduate-update'%}">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row icons-list d-grid gap-3 m-2 mt-2 mb-0">
+              <div
+                class="col-sm-12 col-md-12 col-lg-12 p-2 mt-2 bg-light border card-hover"
+              >
+                <input
+                  name="saved_form_id"
+                  value="{{existingApplication.id}}"
+                  class="d-none"
+                />
+
+                <div
+                  class="col-sm-3 col-md-3 col-lg-3 tooltip-test"
+                  title="{{existingApplication.id}}"
+                >
+                  {{existingApplication.id}}
+                </div>
+                <div
+                  class="col-sm-6 col-md-6 col-lg-6 tooltip-test"
+                  title="Date it was last updated"
+                >
+                  {{existingApplication.creation_date}}
+                </div>
+                <div
+                  class="col-sm-2 col-md-2 col-lg-2 tooltip-test"
+                  title="Step"
+                >
+                  {{existingApplication.current_step}}
+                </div>
+
+                <div class="col-sm-1 col-md-1 col-lg-1" style="float: right">
+                  <button
+                    type="submit"
+                    name="delete_saved"
+                    value="delete_saved"
+                  >
+                    <i class="mdi mdi-close"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </a>
+        {% endfor %}
+      </div>
+      {%endif%}
+
+      <div class="modal-footer">
+        {% comment %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Create a new application
+        </button>
+        {% endcomment %}
+        <button
+          type="submit"
+          name="apply"
+          value="apply"
+          class="btn"
+          style="background-color: maroon; color: white"
+        >
+          Create a new application
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

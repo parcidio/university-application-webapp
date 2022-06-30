@@ -1,0 +1,558 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+
+/******************************
+
+[Table of Contents]
+
+1. Fonts
+2. Body and some general stuff
+3. Header
+	3.1 Top Bar
+	3.2 Header Content
+	3.3 Logo
+	3.4 Main Nav
+	3.5 Hamburger
+4. Menu
+5. Home
+6. Language
+7. Courses
+8. Instructors
+9. Register
+10. Events
+11. Blog
+12. Footer
+
+
+
+******************************/
+
+
+/***********
+1. Fonts
+***********/
+
+
+/*********************************
+2. Body and some general stuff
+*********************************/
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background: #FFFFFF;
+    color: #a5a5a5;
+}
+
+div {
+    display: block;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 0px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.71;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.5);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+p a {
+    display: inline;
+    position: relative;
+    color: inherit;
+    border-bottom: solid 1px #ffa07f;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+a,
+a:hover,
+a:visited,
+a:active,
+a:link {
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+    text-shadow: rgba(0, 0, 0, .01) 0 0 1px;
+}
+
+p a:active {
+    position: relative;
+    color: #FF6347;
+}
+
+p a:hover {
+    color: #FFFFFF;
+    background: #ffa07f;
+}
+
+p a:hover::after {
+    opacity: 0.2;
+}
+
+::selection {}
+
+p::selection {}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 14px;
+}
+
+.form-control {
+    color: #db5246;
+}
+
+section {
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.clear {
+    clear: both;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.float_left {
+    float: left;
+}
+
+.float_right {
+    float: right;
+}
+
+.trans_200 {
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.trans_300 {
+    -webkit-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+
+.trans_400 {
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+
+.trans_500 {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.fill_height {
+    height: 100%;
+}
+
+.super_container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.prlx_parent {
+    overflow: hidden;
+}
+
+.prlx {
+    height: 130% !important;
+}
+
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
+}
+
+.nopadding {
+    padding: 0px !important;
+}
+
+
+/*********************************
+7. Courses
+*********************************/
+
+.courses {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    background: #FFFFFF;
+}
+
+.courses_background {
+    position: absolute;
+    left: 0;
+    top: 339px;
+    width: 100%;
+    height: calc(100% - 339px);
+    background: #f8f8f8;
+}
+
+.courses_row {
+    margin-top: 54px;
+}
+
+.course {
+    border: solid 1px #f1f1f1;
+}
+
+.course_image {
+    width: 100%;
+}
+
+.course_image img {
+    max-width: 100%;
+}
+
+.course_body {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #FFFFFF;
+}
+
+.course_title a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.course_title a:hover {
+    color: #2e21df;
+}
+
+.course_info {
+    margin-top: 5px;
+}
+
+.course_info ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.course_info ul li a {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.course_info ul li a:hover {
+    color: #2e21df;
+}
+
+.course_info ul li:not(:last-child)::after {
+    display: inline-block;
+    font-family: 'FontAwesome';
+    color: #b8b8b8;
+    font-size: 4px;
+    margin-left: 7px;
+    margin-right: 5px;
+    content: '\f111';
+    vertical-align: middle;
+}
+
+.course_text {
+    margin-top: 16px;
+}
+
+.course_footer {
+    width: 100%;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-top: solid 1px #ebebeb;
+    background: #FFFFFF;
+}
+
+.course_students,
+.course_rating {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.course_students i,
+.course_rating i {
+    font-size: 18px;
+    margin-right: 15px;
+    vertical-align: middle;
+}
+
+.course_mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 61px;
+    height: 25px;
+    background: #f9cf0e;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.course_mark:hover {
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.35);
+}
+
+.course_mark a {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 25px;
+}
+
+.course_free {
+    background: maroon;
+}
+
+
+/*********************************
+12. Footer
+*********************************/
+
+
+/* 
+=============================
+FAQ
+=============================
+*/
+
+
+/* Fade in tabs */
+
+@-webkit-keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tab_panel {
+    display: none !important;
+    width: 100%;
+    height: 100%;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+    padding-top: 49px;
+    padding-bottom: 25px;
+}
+
+.tab_panel.active {
+    display: block !important;
+}
+
+.panel_title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 700;
+}
+
+.panel_text {
+    margin-top: 20px;
+}
+
+.panel_text p {
+    font-size: 16px;
+    line-height: 2;
+}
+
+.elements_accordions {
+    margin-top: 34px;
+}
+
+.accordion_container {
+    margin-bottom: 12px;
+    border: solid 1px #e5e5e5;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 16px;
+    padding-bottom: 5px;
+}
+
+
+/* .faqs {
+    margin-top: px;
+} */
+
+
+/* .elements_accordions {
+    margin-top: 34px;
+} */
+
+.accordion_container {
+    margin-bottom: 12px;
+    border: solid 1px #e5e5e5;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 16px;
+    padding-bottom: 5px;
+}
+
+.accordion {
+    width: 100%;
+    cursor: pointer;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.accordion div {
+    max-width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.accordion.active div,
+.accordion div:hover {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.accordion::before {
+    display: inline-block;
+    font-family: 'FontAwesome';
+    content: '\f067';
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 300;
+    vertical-align: middle;
+    margin-right: 20px;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.accordion.active::before,
+.accordion:hover::before {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.accordion.active::before {
+    content: '\f068';
+}
+
+.accordion_panel {
+    padding-right: 8px;
+    padding-left: 32px;
+    padding-top: 11px;
+    max-height: 0px;
+    overflow: hidden;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.accordion.active+.accordion_panel {
+    margin-bottom: 10px;
+}
+
+.accordion_panel p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.4);
+    line-height: 1.71;
+}

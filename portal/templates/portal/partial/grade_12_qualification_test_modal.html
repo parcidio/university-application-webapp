@@ -1,0 +1,77 @@
+<div
+  class="modal fade"
+  id="staticBackdrop_grade_12"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="staticBackdropLabel">
+          GRADE 12 RESULTS CONFRIMATION
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <p>
+          Before you proceed, you are requested to upload your selected grade
+          results...
+        </p>
+        <div class="input-group">
+          <div class="file-drop-area" style="width: 100%">
+            {% if existingDocument.namibia_highest_qualification_copy == ''%}
+            <span class="choose-file-button" style="width: 25rem"
+              >Choose files</span
+            >
+            {% else %}
+            <span class="choose-file-button" style="width: 25rem"
+              >{{existingDocument.namibia_highest_qualification_copy}}</span
+            >
+            {%endif%}{{document_form.namibia_highest_qualification_copy}}
+          </div>
+        </div>
+        <code
+          >If your application is based on your grade 12 results, uploading is
+          mandatory</code
+        >
+      </div>
+
+      <div class="modal-footer">
+        {% comment %}
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Create a new application
+        </button>
+        {% endcomment %}
+        <button
+          type="submit"
+          name="nextButton"
+          class="btn btn-light"
+          id="nextBtn"
+          onclick="nextPrev(1)"
+        >
+          Next
+        </button>
+        <button
+          type="submit"
+          name="apply"
+          value="apply"
+          class="btn"
+          style="background-color: maroon; color: white"
+        >
+          Proceed
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Ignore
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

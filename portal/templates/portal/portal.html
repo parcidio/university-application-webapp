@@ -1,0 +1,294 @@
+{% extends "portal/base.html" %} {% block content %} {%load static%}
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">
+                &nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;
+              </p>
+              <p class="text-primary mb-0 hover-cursor">Analytics</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button
+              type="button"
+              class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block"
+            >
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body dashboard-tabs p-0">
+            <ul class="nav nav-tabs px-4" role="tablist">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  id="overview-tab"
+                  data-toggle="tab"
+                  href="#overview"
+                  role="tab"
+                  aria-controls="overview"
+                  aria-selected="true"
+                  >Users</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="faculty-tab"
+                  data-toggle="tab"
+                  href="#faculty"
+                  role="tab"
+                  aria-controls="faculty"
+                  aria-selected="false"
+                  >Faculty</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="programme-tab"
+                  data-toggle="tab"
+                  href="#programme"
+                  role="tab"
+                  aria-controls="programme"
+                  aria-selected="false"
+                  >Programme</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  id="application_status-tab"
+                  data-toggle="tab"
+                  href="#application_status"
+                  role="tab"
+                  aria-controls="application_status"
+                  aria-selected="false"
+                  >Application Status</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content py-0 px-0">
+              <div
+                class="tab-pane fade show active"
+                id="overview"
+                role="tabpanel"
+                aria-labelledby="overview-tab"
+              >
+                <div class="d-flex flex-wrap justify-content-xl-between">
+                  <div
+                    class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                  >
+                    <i class="mdi mdi-account icon-lg mr-3 text-danger"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">Other Users</small>
+                      <h5 class="mr-2 mb-0">{{other_users}}</h5>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                  >
+                    <i class="mdi mdi-account mr-3 icon-lg text-danger"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">Staff</small>
+                      <h5 class="mr-2 mb-0">{{total_staff}}</h5>
+                    </div>
+                  </div>
+                  <div
+                    class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                  >
+                    <i class="mdi mdi-account mr-3 icon-lg text-danger"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">Total users</small>
+                      <h5 class="mr-2 mb-0">{{total_users}}</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="faculty"
+                role="tabpanel"
+                aria-labelledby="faculty-tab"
+              >
+                <div class="d-flex flex-wrap justify-content-xl-between">
+                  {%for faculty in faculties%}
+                  <div
+                    class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                  >
+                    <i class="mdi mdi-flag icon-lg text-primary"></i>
+                    <div class="d-flex flex-column justify-content-around">
+                      <small class="mb-1 text-muted">{{faculty.name}}</small>
+                      <h5 class="mr-2 mb-0"></h5>
+                    </div>
+                  </div>
+                  {%endfor%}
+                </div>
+              </div>
+                <div
+                  class="tab-pane fade"
+                  id="programme"
+                  role="tabpanel"
+                  aria-labelledby="programme-tab"
+                >
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div
+                      class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen icon-lg mr-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Undergraduate</small>
+                        <h5 class="mr-2 mb-0">11</h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen mr-3 icon-lg text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Postgraduate</small>
+                        <h5 class="mr-2 mb-0">5</h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen mr-3 icon-lg text-success"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Short Courses</small>
+                        <h5 class="mr-2 mb-0">10</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="tab-pane fade"
+                  id="application_status"
+                  role="tabpanel"
+                  aria-labelledby="application_status-tab"
+                >
+                  <div class="d-flex flex-wrap justify-content-xl-between">
+                    <div
+                      class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen icon-lg mr-3 text-primary"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Undergraduate</small>
+                        <h5 class="mr-2 mb-0">11</h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen mr-3 icon-lg text-danger"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Postgraduate</small>
+                        <h5 class="mr-2 mb-0">5</h5>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item"
+                    >
+                      <i class="mdi mdi-pen mr-3 icon-lg text-success"></i>
+                      <div class="d-flex flex-column justify-content-around">
+                        <small class="mb-1 text-muted">Short Courses</small>
+                        <h5 class="mr-2 mb-0">10</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          {% comment %} <div class="col-md-12 stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-title">Recent Purchases</p>
+                <div class="table-responsive pt-3">
+                  <table id="" class="table">
+                    <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Status</th>
+                          <th>Programme</th>
+                          <th>Course</th>
+                          <th>Date</th>
+                          <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for application in applications %}
+                      <tr>
+                          <td>{{application.owner.first_name}}<span class="ml-1"></span
+                            >{{application.owner.last_name}}</td>
+                            {% if application.status == "In progress" %}
+                          <td><span class="badge badge-secondary">{{application.status}}</span></td>
+                          {% elif application.status == "Pending" %}
+                          <td><span class="badge badge-primary">{{application.status}}</span></td>
+                          {% elif application.status == "Rejected" %}
+                          <td><span class="badge badge-danger">{{application.status}}</span></td>
+                          {% elif application.status == "Approved" %}
+                          <td><span class="badge badge-success">{{application.status}}</span></td>
+                          {% endif %}
+
+
+
+                          <td>{{application.category}}</td>
+                          <td>{{application.course_first_choice}}</td>
+                          <td>{{application.creation_date}}</td>
+                          <td>
+                              <ul class="navbar-nav navbar-nav-right">
+                                <li class="nav-item dropdown mr-1">
+                                  <a
+                                    class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+                                    id="messageDropdown"
+                                    href="#"
+                                    data-toggle="dropdown"
+                                  >
+                                    <i class="mdi mx-0"></i>
+                                  </a>
+                                  <div
+                                    class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                                    aria-labelledby="messageDropdown"
+                                  >
+                                    <a class="dropdown-item">view</a>
+                                    <a class="dropdown-item">approve</a>
+                                  </div>
+                                </li>
+                              </ul>
+                            </td>
+                      </tr>
+                      {% endfor%}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div> {% endcomment %}
+      </div>
+   
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:../../partials/_footer.html -->
+  {% include 'portal/partial/footer.html' %}
+  <!-- partial -->
+  </div>
+  
+  <!-- main-panel ends -->
+  {%endblock content%}
+</div>
